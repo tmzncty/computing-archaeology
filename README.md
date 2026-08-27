@@ -2,7 +2,7 @@
 
 > **Computers are not inevitable. They are accumulated engineering decisions.**
 
-`computing-archaeology` is an experimental history of computing: a repository for reconstructing **why computers became what they are** through material constraints, forgotten technologies, institutional choices, failed designs, and small hands-on experiments.
+`computing-archaeology` is an experimental history of computing: a repository for reconstructing **why computers became what they are** through material constraints, forgotten technologies, institutional choices, failed designs, labor, maintenance, and small hands-on experiments.
 
 A normal timeline asks:
 
@@ -19,31 +19,66 @@ The goal is not to replace conventional computer history. It is to put **enginee
 
 ## The method
 
-Every substantial article should distinguish three layers:
+Every substantial article distinguishes three layers:
 
 1. **Historical record** — what surviving documents, machines, patents, oral histories, museum collections, and scholarship establish.
 2. **Engineering reconstruction** — what follows when we reason from the period's available components, costs, speeds, manufacturing limits, interfaces, and operational needs.
 3. **Experiment** — a simulation, replica, program, FPGA build, paper exercise, or physical demonstration that lets us test part of the reconstruction.
 
-These layers must not be silently mixed. A plausible reconstruction is not automatically a historical fact.
+These layers must not be silently mixed. A plausible reconstruction is not automatically a historical fact, and a modern experiment does not prove historical intent.
 
-See [`docs/methodology/constraint-first-history.md`](docs/methodology/constraint-first-history.md).
+See [`docs/methodology/constraint-first-history.md`](docs/methodology/constraint-first-history.md) and [`AGENTS.md`](AGENTS.md).
 
 ## Start here
 
+### Foundations
+
 - [`docs/mechanical/why-difference-engine.md`](docs/mechanical/why-difference-engine.md) — why finite differences made mechanical computation tractable.
 - [`docs/electromechanical/why-relays.md`](docs/electromechanical/why-relays.md) — how telephone switching hardware became computing machinery.
+- [`docs/electronic/why-vacuum-tubes.md`](docs/electronic/why-vacuum-tubes.md) — why electronic speed could justify heat, power, failure risk, and a new maintenance culture.
+- [`case-studies/eniac/from-wiring-to-stored-program.md`](case-studies/eniac/from-wiring-to-stored-program.md) — why the transition from physical configuration to coded control was gradual rather than one clean invention.
+
+### Memory and physical locality
+
 - [`docs/memory/why-early-memory-looked-weird.md`](docs/memory/why-early-memory-looked-weird.md) — mercury, CRTs, drums, and magnetic cores as answers to the memory problem.
+- [`docs/memory/why-drum-memory-made-programmers-wait.md`](docs/memory/why-drum-memory-made-programmers-wait.md) — how IBM 650 programmers and assemblers scheduled code around a rotating drum.
+
+### Programs, operators, and users
+
 - [`docs/interaction/why-programs-were-holes.md`](docs/interaction/why-programs-were-holes.md) — why punched media fit data processing before keyboards and disks did.
+- [`docs/interaction/why-batch-processing-made-sense.md`](docs/interaction/why-batch-processing-made-sense.md) — why removing the programmer from the console could improve total installation throughput.
+
+### Architecture that no longer looks “normal”
+
+- [`docs/architecture/why-word-lengths-were-weird.md`](docs/architecture/why-word-lengths-were-weird.md) — why 18-, 36-, and 60-bit words could be coherent engineering choices.
 - [`docs/architecture/why-eight-bit-byte.md`](docs/architecture/why-eight-bit-byte.md) — why “byte = 8 bits” is a historical outcome, not a law of nature.
+
+### Research infrastructure
+
+- [`docs/references/source-ledger.md`](docs/references/source-ledger.md) — archival collections, primary documents, source types, caveats, and research targets.
+- [`ACKNOWLEDGEMENTS.md`](ACKNOWLEDGEMENTS.md) — the people and institutions whose preservation work makes this repository possible.
 - [`ROADMAP.md`](ROADMAP.md) — the larger excavation plan.
+
+## Runnable experiments
+
+The experiments are intentionally small and dependency-free where practical. They expose one constraint at a time rather than cosmetically imitating an old machine.
+
+- [`experiments/finite-differences/`](experiments/finite-differences/) — compare direct polynomial evaluation with repeated finite-difference addition under different operation-cost assumptions.
+- [`experiments/reliability-throughput/`](experiments/reliability-throughput/) — show why a faster but less available machine can still deliver much more useful work, without pretending the default reliability numbers are historical measurements.
+- [`experiments/drum-timing/`](experiments/drum-timing/) — compare consecutive and timing-aware instruction placement on a rotating drum.
+- [`experiments/batch-economics/`](experiments/batch-economics/) — compare machine occupancy and throughput under direct per-job setup and batching.
+- [`experiments/word-packing/`](experiments/word-packing/) — compare how historical word widths pack different character/field widths.
+
+Each experiment README states its assumptions and, just as importantly, what the model **cannot** establish historically.
 
 ## Questions this project wants to answer
 
 - Why did Babbage choose decimal wheels even though he considered binary?
 - Why was repeated addition a useful *architectural* trick?
 - Why could telephone relays become logic elements?
+- Why accept thousands of vacuum tubes instead of staying with relays?
 - Why did programming spend decades as wiring, switches, cards, and paper tape?
+- What exactly changed when control became coded information?
 - Why did early main memory use sound waves in mercury?
 - Why did CRTs briefly make sense as RAM?
 - Why did magnetic drums make programmers care about rotational position?
@@ -60,9 +95,11 @@ This is **not** a “great men and great machines” list, and it is not a claim
 
 The repository should therefore preserve failed branches and awkward transitional designs, not edit history into a clean road toward the modern PC.
 
+It also avoids unqualified priority slogans. “First computer,” “first programmer,” “first operating system,” and “first stored-program computer” are questions that require a criterion, not badges to be handed out casually.
+
 ## Sources and citation policy
 
-Historical claims should be cited as close to the claim as practical. Prefer, in roughly this order:
+Historical claims are cited as close to the claim as practical. Prefer, in roughly this order:
 
 - primary documents, patents, manuals, design memos, correspondence, and contemporary reports;
 - museum and archival collections with provenance;
@@ -70,34 +107,26 @@ Historical claims should be cited as close to the claim as practical. Prefer, in
 - institutional histories, oral histories, and high-quality technical retrospectives;
 - tertiary summaries only as navigation aids, not as the sole support for contentious claims.
 
-A source can be valuable without being neutral. Corporate histories, memoirs, and oral histories should be identified for what they are.
+A source can be valuable without being neutral. Corporate histories, memoirs, oral histories, and modern reconstructions are identified for what they are.
 
-See [`ACKNOWLEDGEMENTS.md`](ACKNOWLEDGEMENTS.md) for the institutions and collections this project currently leans on.
+The first field set currently draws on material from the Computer History Museum, Bitsavers, IBM documentation and historical collections, the University of Manchester, the University of Pennsylvania, the National Museum of Computing, Smithsonian Libraries, DEC documentation, and CDC design records.
+
+See [`docs/references/source-ledger.md`](docs/references/source-ledger.md) for source-level notes and [`ACKNOWLEDGEMENTS.md`](ACKNOWLEDGEMENTS.md) for preservation credit.
 
 ## Authorship and assistance
 
 Repository owner and maintainer: **tmzncty**.
 
-Initial research structure, drafting, and editorial assistance: **ChatGPT (GPT-5.6 Sol), OpenAI**.
+Initial research structure, source triage, experiments, drafting, and editorial assistance: **ChatGPT (GPT-5.6 Sol), OpenAI**.
 
 AI-assisted text in this repository should be treated like any other secondary synthesis: useful for organizing questions and reconstructing engineering choices, but subject to verification against cited sources. The presence of a citation does not excuse a bad inference.
 
-## Relationship to experiments
-
-A companion experiment can be tiny. Good examples include:
-
-- emulate a decimal carry chain and compare it with binary;
-- implement a finite-difference table using only addition;
-- build relay logic in a simulator;
-- model serial memory latency for a delay line or rotating drum;
-- write a card-deck batch runner;
-- emulate a teleprinter-style terminal;
-- explore historical word lengths and character encodings.
-
-The point is not historical cosplay. The experiment should expose a constraint that prose alone tends to hide.
-
 ## Status
 
-This repository is deliberately young. Its first milestone is to establish a defensible method and a set of worked examples before expanding into a full chronological map.
+**M0 — method and first excavations: complete.**
+
+The repository now has a source policy, source ledger, acknowledgement map, worked articles across mechanical/electromechanical/electronic computing, memory, interaction, and architecture, plus runnable constraint experiments.
+
+The next milestones expand outward rather than rewrite the foundation: deeper machine case studies, more primary documents, mechanical carry/radix experiments, full memory-technology excavations, time-sharing and terminal history, minicomputers/microprocessors, and standards that fossilized into modern architecture.
 
 If a page makes you say “why on earth would anyone build it that way?”, that is probably where the excavation should begin.

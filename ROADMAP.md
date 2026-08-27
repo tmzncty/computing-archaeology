@@ -2,7 +2,9 @@
 
 This roadmap is organized by **historical problems**, not by a single parade of machines. Chronology still matters, but the project should repeatedly stop and ask what problem made a technology sensible in its own time.
 
-## M0 — Method and first excavations
+A checked item means the repository now has a defensible first treatment. It does **not** mean the historical topic is exhausted.
+
+## M0 — Method and first excavations ✅
 
 Goal: establish a repeatable way to separate evidence, reconstruction, and experiment.
 
@@ -12,8 +14,21 @@ Goal: establish a repeatable way to separate evidence, reconstruction, and exper
 - [x] Survey early memory as a design problem.
 - [x] Write a punched-media interaction case study.
 - [x] Start an 8-bit-byte case study using IBM Stretch material.
-- [ ] Add a source ledger with stable archival links where possible.
-- [ ] Add at least one runnable experiment.
+- [x] Add a source ledger with stable archival links where possible.
+- [x] Add runnable experiments with explicit model limitations.
+- [x] Add source/archival acknowledgements and AI-assistance disclosure.
+- [x] Demonstrate the method across mechanical, electromechanical, electronic, memory, interaction, and architecture topics.
+
+First-field-set additions:
+
+- [`docs/electronic/why-vacuum-tubes.md`](docs/electronic/why-vacuum-tubes.md)
+- [`case-studies/eniac/from-wiring-to-stored-program.md`](case-studies/eniac/from-wiring-to-stored-program.md)
+- [`docs/memory/why-drum-memory-made-programmers-wait.md`](docs/memory/why-drum-memory-made-programmers-wait.md)
+- [`docs/interaction/why-batch-processing-made-sense.md`](docs/interaction/why-batch-processing-made-sense.md)
+- [`docs/architecture/why-word-lengths-were-weird.md`](docs/architecture/why-word-lengths-were-weird.md)
+- [`experiments/drum-timing/`](experiments/drum-timing/)
+- [`experiments/batch-economics/`](experiments/batch-economics/)
+- [`experiments/word-packing/`](experiments/word-packing/)
 
 ## M1 — Mechanical computation
 
@@ -36,7 +51,7 @@ Candidate excavations:
 Experiments:
 
 - decimal vs binary carry simulator;
-- finite-difference engine using addition only;
+- finite-difference engine using addition only — **initial version exists** in [`experiments/finite-differences/`](experiments/finite-differences/);
 - virtual gear train with configurable backlash/error.
 
 ## M2 — Punched media and information machinery
@@ -56,6 +71,10 @@ Candidate excavations:
 - paper tape;
 - card readers, sorters, punches, and tabulators;
 - card-oriented programming habits.
+
+Existing first treatment:
+
+- [`docs/interaction/why-programs-were-holes.md`](docs/interaction/why-programs-were-holes.md)
 
 Experiments:
 
@@ -78,6 +97,10 @@ Candidate excavations:
 - Harvard Mark I;
 - relay logic notation and maintenance.
 
+Existing first treatment:
+
+- [`docs/electromechanical/why-relays.md`](docs/electromechanical/why-relays.md)
+
 Experiments:
 
 - relay adder;
@@ -99,10 +122,17 @@ Candidate excavations:
 - EDVAC debates and stored-program ideas;
 - early reliability practices.
 
-Experiments:
+Completed first treatments:
 
-- compare relay and electronic switching latency at system scale;
-- patch-panel programming model.
+- [x] [`docs/electronic/why-vacuum-tubes.md`](docs/electronic/why-vacuum-tubes.md) — electronic speed versus heat, power, maintenance, and reliability engineering.
+- [x] [`case-studies/eniac/from-wiring-to-stored-program.md`](case-studies/eniac/from-wiring-to-stored-program.md) — ENIAC programming, 1947–48 coded-control modification, EDVAC historiography, and Manchester comparison.
+
+Still deepen with:
+
+- Colossus primary wartime/reconstruction documentation;
+- ENIAC maintenance records and failure logs;
+- full EDVAC documentation and correspondence;
+- an explicit relay-vs-electronic system-scale timing experiment.
 
 ## M5 — The memory problem
 
@@ -124,10 +154,23 @@ Candidate excavations:
 - magnetic-core memory;
 - early semiconductor memory.
 
-Experiments:
+Completed first treatments:
+
+- [x] [`docs/memory/why-early-memory-looked-weird.md`](docs/memory/why-early-memory-looked-weird.md) — comparative survey.
+- [x] [`docs/memory/why-drum-memory-made-programmers-wait.md`](docs/memory/why-drum-memory-made-programmers-wait.md) — IBM 650 drum geometry, next-instruction addresses, and SOAP optimization.
+- [x] [`experiments/drum-timing/`](experiments/drum-timing/) — rotational instruction-placement model.
+
+Still deepen with dedicated excavations for:
+
+- mercury acoustic delay lines;
+- Williams–Kilburn storage;
+- magnetic-core memory and its manufacturing labor;
+- destructive read/refresh;
+- early semiconductor memory.
+
+Planned experiments:
 
 - serial-memory latency visualizer;
-- optimal instruction placement on a simulated drum;
 - destructive-read / refresh models.
 
 ## M6 — Stored programs, words, and instruction formats
@@ -149,11 +192,20 @@ Candidate excavations:
 - DEC and CDC word-oriented machines;
 - IBM System/360 and the consolidation of the 8-bit byte.
 
-Experiments:
+Completed first treatments:
 
-- historical word-size emulator;
-- packing text into 6-, 7-, 8-, 9-, and 12-bit character units;
-- instruction-format tradeoff explorer.
+- [x] [`case-studies/eniac/from-wiring-to-stored-program.md`](case-studies/eniac/from-wiring-to-stored-program.md) — why “stored program” is not one uncontested first.
+- [x] [`docs/architecture/why-word-lengths-were-weird.md`](docs/architecture/why-word-lengths-were-weird.md) — PDP-1 18-bit, IBM 704 36-bit, CDC 6600 60-bit, and System/360 compatibility pressure.
+- [x] [`docs/architecture/why-eight-bit-byte.md`](docs/architecture/why-eight-bit-byte.md) — Stretch byte/word tradeoffs.
+- [x] [`experiments/word-packing/`](experiments/word-packing/) — field-packing tradeoff explorer.
+
+Still deepen with:
+
+- Manchester Mark I and EDSAC instruction formats;
+- IAS-family diffusion;
+- original System/360 architecture/design papers;
+- 24- and 48-bit machine families;
+- instruction-format tradeoff explorer beyond packing alone.
 
 ## M7 — Batch, operators, and the missing user
 
@@ -171,9 +223,18 @@ Candidate excavations:
 - operator consoles;
 - job control systems.
 
-Experiment:
+Completed first treatments:
 
-- multi-user batch scheduler where machine time is expensive and human time is cheap.
+- [x] [`docs/interaction/why-batch-processing-made-sense.md`](docs/interaction/why-batch-processing-made-sense.md) — GM/NAA-style workflow, offline I/O, professional operators, throughput versus turnaround.
+- [x] [`experiments/batch-economics/`](experiments/batch-economics/) — explicit throughput/utilization model with hypothetical costs.
+
+Still deepen with:
+
+- original GM-NAA documentation;
+- operator manuals and machine-room procedures;
+- job-control languages;
+- scheduler/accounting evolution;
+- labor history across more installations.
 
 ## M8 — Time-sharing and terminals
 
@@ -259,4 +320,16 @@ An article is ready when it includes:
 5. at least one rejected alternative or tradeoff;
 6. a short “what this teaches us” section;
 7. references suitable for further reading;
-8. ideally, an experiment or reproducible exercise.
+8. ideally, an experiment or reproducible exercise;
+9. source-type/caveat notes when a key source is corporate, oral, retrospective, or reconstructed.
+
+## Definition of done for an experiment
+
+A historical-engineering experiment is ready when:
+
+1. it runs from the repository with documented commands;
+2. its assumptions are explicit;
+3. its default parameters are identified as historical or hypothetical;
+4. its output exposes a concrete constraint;
+5. its README says what the model cannot prove;
+6. it is not presented as a historical emulator unless it actually reproduces the documented machine closely enough to justify that label.
