@@ -1,0 +1,29 @@
+name: experiment-smoke-tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile experiment sources
+        run: python -m compileall -q experiments
+      - name: Finite differences
+        run: python experiments/finite-differences/finite_difference.py
+      - name: Reliability versus throughput
+        run: python experiments/reliability-throughput/reliability_throughput.py
+      - name: Drum timing
+        run: python experiments/drum-timing/drum_timing.py
+      - name: Batch economics
+        run: python experiments/batch-economics/batch_economics.py
+      - name: Word packing
+        run: python experiments/word-packing/word_packing.py
