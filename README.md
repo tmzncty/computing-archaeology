@@ -64,6 +64,7 @@ See [`docs/methodology/constraint-first-history.md`](docs/methodology/constraint
 The experiments are intentionally small and dependency-free where practical. They expose one constraint at a time rather than cosmetically imitating an old machine.
 
 - [`experiments/finite-differences/`](experiments/finite-differences/) — compare direct polynomial evaluation with repeated finite-difference addition under different operation-cost assumptions.
+- [`experiments/reliability-throughput/`](experiments/reliability-throughput/) — show why a faster but less available machine can still deliver much more useful work, without pretending the default reliability numbers are historical measurements.
 - [`experiments/drum-timing/`](experiments/drum-timing/) — compare consecutive and timing-aware instruction placement on a rotating drum.
 - [`experiments/batch-economics/`](experiments/batch-economics/) — compare machine occupancy and throughput under direct per-job setup and batching.
 - [`experiments/word-packing/`](experiments/word-packing/) — compare how historical word widths pack different character/field widths.
