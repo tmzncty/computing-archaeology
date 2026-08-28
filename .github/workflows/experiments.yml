@@ -29,15 +29,27 @@ jobs:
         run: python experiments/reliability-throughput/reliability_throughput.py
       - name: Serial memory
         run: python experiments/serial-memory/serial_memory.py
+      - name: CRT refresh
+        run: python experiments/crt-refresh/crt_refresh.py
       - name: Drum timing
         run: python experiments/drum-timing/drum_timing.py
       - name: Core memory
         run: python experiments/core-memory/core_memory.py
+      - name: Tape locality
+        run: python experiments/tape-locality/tape_locality.py
+      - name: Card columns
+        run: python experiments/card-columns/card_columns.py
+      - name: Bootstrap chain
+        run: python experiments/bootstrap-chain/bootstrap_chain.py
       - name: Batch economics
         run: python experiments/batch-economics/batch_economics.py
       - name: TTY bandwidth budget
         run: python experiments/tty-budget/tty_budget.py
       - name: Time-sharing
         run: python experiments/time-sharing/time_sharing.py
+      - name: Text fossils
+        run: python experiments/text-fossils/text_fossils.py
+      - name: Endianness
+        run: python experiments/endianness/endianness.py
       - name: Word packing
         run: python experiments/word-packing/word_packing.py
