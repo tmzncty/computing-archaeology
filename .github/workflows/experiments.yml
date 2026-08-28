@@ -21,11 +21,23 @@ jobs:
         run: python -m compileall -q experiments tools
       - name: Finite differences
         run: python experiments/finite-differences/finite_difference.py
+      - name: Carry propagation
+        run: python experiments/carry-propagation/carry_propagation.py
+      - name: Relay bounce
+        run: python experiments/relay-bounce/relay_bounce.py
       - name: Reliability versus throughput
         run: python experiments/reliability-throughput/reliability_throughput.py
+      - name: Serial memory
+        run: python experiments/serial-memory/serial_memory.py
       - name: Drum timing
         run: python experiments/drum-timing/drum_timing.py
+      - name: Core memory
+        run: python experiments/core-memory/core_memory.py
       - name: Batch economics
         run: python experiments/batch-economics/batch_economics.py
+      - name: TTY bandwidth budget
+        run: python experiments/tty-budget/tty_budget.py
+      - name: Time-sharing
+        run: python experiments/time-sharing/time_sharing.py
       - name: Word packing
         run: python experiments/word-packing/word_packing.py
