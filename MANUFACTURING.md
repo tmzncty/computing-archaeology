@@ -34,6 +34,19 @@ Start with [`docs/manufacturing/README.md`](docs/manufacturing/README.md).
 
 These pages trace a second machine hidden inside every fab: measurement, event logs, wafer maps, test programs, carriers, robots, mask data, design rules, and software that keeps physical production state consistent.
 
+## Facility process layer: manufacturing the artificial environment
+
+- [`docs/facilities/why-ultrapure-water-became-a-process-material.md`](docs/facilities/why-ultrapure-water-became-a-process-material.md)
+- [`docs/facilities/why-clean-air-had-to-keep-moving.md`](docs/facilities/why-clean-air-had-to-keep-moving.md)
+- [`docs/facilities/why-specialty-gases-became-a-fab-nervous-system.md`](docs/facilities/why-specialty-gases-became-a-fab-nervous-system.md)
+- [`docs/facilities/why-clean-vacuum-became-a-process-requirement.md`](docs/facilities/why-clean-vacuum-became-a-process-requirement.md)
+- [`docs/facilities/why-temperature-and-vibration-became-process-variables.md`](docs/facilities/why-temperature-and-vibration-became-process-variables.md)
+- [`docs/facilities/why-static-charge-became-a-yield-problem.md`](docs/facilities/why-static-charge-became-a-yield-problem.md)
+- [`docs/facilities/why-exhaust-and-abatement-became-part-of-the-process.md`](docs/facilities/why-exhaust-and-abatement-became-part-of-the-process.md)
+- [`docs/facilities/why-the-fab-became-a-utility-machine.md`](docs/facilities/why-the-fab-became-a-utility-machine.md)
+
+These pages treat the fab building itself as a process platform. Clean air, ultrapure water, specialty gases, vacuum, cooling, structural stability, static control, exhaust, and abatement are not peripheral utilities once their drift can change yield, uptime, safety, or metrology.
+
 ## Reliability: when a correct device can still die later
 
 - [`docs/reliability/why-electromigration-made-wires-a-lifetime-limit.md`](docs/reliability/why-electromigration-made-wires-a-lifetime-limit.md)
@@ -58,6 +71,7 @@ Reliability history restores time to a device that a schematic draws as timeless
 - [`docs/references/manufacturing-substrate-2-field-set.md`](docs/references/manufacturing-substrate-2-field-set.md)
 - [`docs/references/manufacturing-substrate-3-field-set.md`](docs/references/manufacturing-substrate-3-field-set.md)
 - [`docs/references/manufacturing-substrate-4-field-set.md`](docs/references/manufacturing-substrate-4-field-set.md)
+- [`docs/references/manufacturing-substrate-5-field-set.md`](docs/references/manufacturing-substrate-5-field-set.md)
 
 ## Why this deserves its own track
 
@@ -74,6 +88,12 @@ wafer probing / burn-in / automatic test / yield analysis
 sealed carriers / FOUP / robotic material handling
 SECS-GEM / MES / lot and wafer traceability
 GDSII / mask-data preparation / tapeout
+ultrapure water / clean-air recirculation
+high-purity gas distribution / gas cabinets
+vacuum / process cooling / chilled water
+floor vibration / thermal stability / power quality
+ESD / ESA / EMI control
+exhaust / scrubbers / abatement / wastewater
 wire bonding / flip-chip / interposer / multidie packaging
 copper-clad laminates / drilling / plating / multilayer PCB
 through-hole / wave solder / SMT / paste / reflow
@@ -83,7 +103,7 @@ EDA / design rules / PDK-like interfaces
 foundries / fabless design interfaces
 ```
 
-These are not peripheral production details. They determine what architectures can be manufactured reliably, revised quickly, tested economically, connected densely, traced after failure, and sold cheaply enough to matter.
+These are not peripheral production details. They determine what architectures can be manufactured reliably, revised quickly, tested economically, connected densely, traced after failure, kept inside a stable physical environment, and sold cheaply enough to matter.
 
 ## Runnable manufacturing experiments
 
@@ -130,22 +150,33 @@ Fourth field set:
 - [`experiments/layout-hierarchy/`](experiments/layout-hierarchy/)
 - [`experiments/multidie-yield/`](experiments/multidie-yield/)
 
+Fifth field set:
+
+- [`experiments/upw-contamination-budget/`](experiments/upw-contamination-budget/)
+- [`experiments/airflow-removal/`](experiments/airflow-removal/)
+- [`experiments/gas-delivery-purity/`](experiments/gas-delivery-purity/)
+- [`experiments/vacuum-gas-load/`](experiments/vacuum-gas-load/)
+- [`experiments/facility-stability-budget/`](experiments/facility-stability-budget/)
+- [`experiments/static-particle-attraction/`](experiments/static-particle-attraction/)
+- [`experiments/abatement-capacity/`](experiments/abatement-capacity/)
+
 ## Next excavations
 
 The track can now go deeper into narrower factory subsystems rather than rebuilding the foundation:
 
+- UPW plant evolution: ion exchange, RO, UV oxidation, ultrafiltration, distribution materials, TOC/particle metrology, reclaim;
+- bulk/specialty-gas purification, mass-flow controllers, high-purity valves, electropolished tubing, orbital welding, leak detection;
+- vacuum-pump and residual-gas-analysis history, oil-free pumping, chamber seasoning and clean recovery;
+- HEPA→ULPA, airborne molecular contamination, chemical filtration, gowning, filter manufacture, cleanroom balancing;
+- PCW/chillers/cooling towers, power-quality and voltage-sag history, UPS/control-power architecture;
+- fab vibration criteria, waffle floors, isolated foundations, metrology-environment design;
+- ESD/EOS/ESA, ionizers, dissipative materials, field/event monitoring, reticle electrostatic protection;
+- scrubbers, burn/wet/plasma abatement, exhaust segregation, acid/solvent systems, wastewater neutralization and reclaim;
 - specific e-beam mask-writer / reticle-inspection tool histories;
 - stepper-to-scanner transitions, wavelengths, resists, focus/overlay metrology;
-- rapid thermal anneal and implant-damage recovery;
 - probe-card technologies, sockets, handlers, and tester programming languages;
-- run-to-run/APC and detailed yield-learning organizations;
 - ESD/EOS, TDDB, hot-carrier aging, corrosion, moisture, whiskers, and package cracking;
 - package substrates, ABF, BGA/PGA/QFP, underfill, TSV, interposers, hybrid bonding, and die-to-die interfaces;
-- phenolic laminates, FR-4, microvias, HDI, backplanes, connectors, cables, and power distribution;
-- AOI/ICT/X-ray/acoustic inspection equipment lineages and review labor;
-- 200→300 mm AMHS, stockers, overhead transport, FOUP repair, and factory recovery procedures;
-- SECS/GEM revision history, MES, scheduling, recipe governance, and electronic genealogy;
-- GDSII successors, fracture/job-deck history, OPC, mask correction, and data-volume growth;
-- semiconductor/PCB labor geography, OSAT, and the equipment/material supply chains below the fab.
+- semiconductor/PCB/facilities labor geography, OSAT, and the equipment/material supply chains below the fab.
 
-> **A billion-transistor processor is not only a triumph of logic design. It is evidence that an enormous manufacturing civilization learned to purify matter, grow crystals, reproduce patterns, measure distributions, screen populations, track material, preserve data lineage, connect packages, and coordinate factories with extraordinary reliability.**
+> **A billion-transistor processor is not only a triumph of logic design. It is evidence that an enormous manufacturing civilization learned to purify matter, grow crystals, reproduce patterns, measure distributions, manufacture an artificial environment, screen populations, track material, preserve data lineage, connect packages, and coordinate factories with extraordinary reliability.**

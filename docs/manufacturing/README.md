@@ -17,6 +17,7 @@ materials
 -> automated material handling
 -> MES / traceability / manufacturing data
 -> design-data / mask-data interfaces
+-> facility process layer
 -> system integration
 ```
 
@@ -53,6 +54,19 @@ This track reconstructs the manufacturing capabilities that made computing scala
 - [`why-design-rules-became-an-interface-to-the-fab.md`](why-design-rules-became-an-interface-to-the-fab.md)
 - [`why-tapeout-became-a-data-interface-to-the-mask-shop.md`](why-tapeout-became-a-data-interface-to-the-mask-shop.md)
 - [`why-foundries-separated-design-from-fabrication.md`](why-foundries-separated-design-from-fabrication.md)
+
+## Facility process layer: manufacturing the artificial environment
+
+- [`../facilities/why-ultrapure-water-became-a-process-material.md`](../facilities/why-ultrapure-water-became-a-process-material.md)
+- [`../facilities/why-clean-air-had-to-keep-moving.md`](../facilities/why-clean-air-had-to-keep-moving.md)
+- [`../facilities/why-specialty-gases-became-a-fab-nervous-system.md`](../facilities/why-specialty-gases-became-a-fab-nervous-system.md)
+- [`../facilities/why-clean-vacuum-became-a-process-requirement.md`](../facilities/why-clean-vacuum-became-a-process-requirement.md)
+- [`../facilities/why-temperature-and-vibration-became-process-variables.md`](../facilities/why-temperature-and-vibration-became-process-variables.md)
+- [`../facilities/why-static-charge-became-a-yield-problem.md`](../facilities/why-static-charge-became-a-yield-problem.md)
+- [`../facilities/why-exhaust-and-abatement-became-part-of-the-process.md`](../facilities/why-exhaust-and-abatement-became-part-of-the-process.md)
+- [`../facilities/why-the-fab-became-a-utility-machine.md`](../facilities/why-the-fab-became-a-utility-machine.md)
+
+The building is part of the process once contamination, thermal drift, vibration, charge, vacuum gas load, gas-delivery purity, or exhaust capacity can change yield and uptime.
 
 ## Reliability and wear-out
 
@@ -115,12 +129,23 @@ Fourth field set:
 - [`../../experiments/layout-hierarchy/`](../../experiments/layout-hierarchy/)
 - [`../../experiments/multidie-yield/`](../../experiments/multidie-yield/)
 
+Fifth field set:
+
+- [`../../experiments/upw-contamination-budget/`](../../experiments/upw-contamination-budget/)
+- [`../../experiments/airflow-removal/`](../../experiments/airflow-removal/)
+- [`../../experiments/gas-delivery-purity/`](../../experiments/gas-delivery-purity/)
+- [`../../experiments/vacuum-gas-load/`](../../experiments/vacuum-gas-load/)
+- [`../../experiments/facility-stability-budget/`](../../experiments/facility-stability-budget/)
+- [`../../experiments/static-particle-attraction/`](../../experiments/static-particle-attraction/)
+- [`../../experiments/abatement-capacity/`](../../experiments/abatement-capacity/)
+
 ## Source maps
 
 - [`../references/manufacturing-substrate-field-set.md`](../references/manufacturing-substrate-field-set.md)
 - [`../references/manufacturing-substrate-2-field-set.md`](../references/manufacturing-substrate-2-field-set.md)
 - [`../references/manufacturing-substrate-3-field-set.md`](../references/manufacturing-substrate-3-field-set.md)
 - [`../references/manufacturing-substrate-4-field-set.md`](../references/manufacturing-substrate-4-field-set.md)
+- [`../references/manufacturing-substrate-5-field-set.md`](../references/manufacturing-substrate-5-field-set.md)
 
 ## What this track is trying to preserve
 
@@ -140,12 +165,19 @@ probe cards / ATE programs / burn-in
 cleanroom shifts / SMIF / FOUP / AMHS
 MES / recipe governance / lot genealogy
 wire bonds / solder bumps / underfill / interposers
+UPW polishing / distribution / point-of-use monitoring
+HEPA/ULPA airflow / pressure balancing / chemical filtration
+specialty-gas cabinets / high-purity piping / leak detection
+vacuum pumps / gauges / leak checks / chamber recovery
+PCW / chillers / vibration / thermal stability
+ESD / ESA / EMI controls
+exhaust balancing / scrubbers / abatement / wastewater
 package thermal cycling / electromigration
 board drilling / plating / paste / placement / reflow
 AOI / ICT / X-ray / failure analysis / rework
 foundry customer engineering / PDK / design-rule maintenance
 ```
 
-Yet these are precisely the things that determine whether a design can be built once, a thousand times, or a billion times — and whether it can still work years later.
+Yet these are precisely the things that determine whether a design can be built once, a thousand times, or a billion times — and whether the environment stays stable enough for the recipe to mean the same thing every time.
 
-> **The semiconductor revolution is not only the history of smaller switches. It is the history of an industrial system learning to control matter, geometry, populations, time, data lineage, interfaces, defects, and organizational boundaries at microscopic scale — then connect the result reliably at package, board, and system scale.**
+> **The semiconductor revolution is not only the history of smaller switches. It is the history of an industrial system learning to control matter, geometry, populations, time, data lineage, purity, energy, motion, interfaces, defects, and organizational boundaries at microscopic scale — then connect the result reliably at package, board, facility, and system scale.**
