@@ -10,12 +10,13 @@ materials
 -> semiconductor process
 -> lithography / equipment
 -> implant / anneal
--> yield / probe / automatic test
--> packaging
--> printed wiring
--> board assembly
--> inspection / rework
+-> metrology / SPC / yield learning
+-> probe / screening / automatic test
+-> packaging / reliability
+-> printed wiring / board assembly / inspection
 -> automated material handling
+-> MES / traceability / manufacturing data
+-> design-data / mask-data interfaces
 -> system integration
 ```
 
@@ -37,23 +38,39 @@ This track reconstructs the manufacturing capabilities that made computing scala
 - [`../semiconductor/why-the-fab-became-a-machine-around-the-machine.md`](../semiconductor/why-the-fab-became-a-machine-around-the-machine.md)
 - [`../semiconductor/why-yield-is-an-architectural-constraint.md`](../semiconductor/why-yield-is-an-architectural-constraint.md)
 
-## Iteration, equipment, test, and industrial organization
+## Iteration, process control, test, and factory automation
 
 - [`../semiconductor/why-eprom-made-hardware-development-iterative.md`](../semiconductor/why-eprom-made-hardware-development-iterative.md)
 - [`why-equipment-vendors-became-part-of-the-process.md`](why-equipment-vendors-became-part-of-the-process.md)
 - [`why-automatic-test-became-an-industry.md`](why-automatic-test-became-an-industry.md)
+- [`why-process-control-became-a-product-feature.md`](why-process-control-became-a-product-feature.md)
+- [`why-probe-and-burn-in-screened-a-population.md`](why-probe-and-burn-in-screened-a-population.md)
 - [`why-smif-put-the-cleanroom-around-the-wafer.md`](why-smif-put-the-cleanroom-around-the-wafer.md)
+- [`why-the-300mm-fab-needed-a-digital-shadow.md`](why-the-300mm-fab-needed-a-digital-shadow.md)
+
+## Manufacturing interfaces: design rules, data, and foundries
+
 - [`why-design-rules-became-an-interface-to-the-fab.md`](why-design-rules-became-an-interface-to-the-fab.md)
+- [`why-tapeout-became-a-data-interface-to-the-mask-shop.md`](why-tapeout-became-a-data-interface-to-the-mask-shop.md)
 - [`why-foundries-separated-design-from-fabrication.md`](why-foundries-separated-design-from-fabrication.md)
+
+## Reliability and wear-out
+
+- [`../reliability/why-electromigration-made-wires-a-lifetime-limit.md`](../reliability/why-electromigration-made-wires-a-lifetime-limit.md)
+- [`../reliability/why-solder-joints-and-delamination-became-system-failures.md`](../reliability/why-solder-joints-and-delamination-became-system-failures.md)
+
+These pages restore time to the manufactured object: current can move metal, thermal cycles can fatigue solder, and interfaces can separate after a device has already passed production test.
 
 ## Packaging and board assembly
 
 - [`../packaging/why-a-chip-needs-a-package.md`](../packaging/why-a-chip-needs-a-package.md)
 - [`../packaging/why-wire-bonds-failed-in-strange-colors.md`](../packaging/why-wire-bonds-failed-in-strange-colors.md)
 - [`../packaging/why-flip-chip-shortened-the-interconnect.md`](../packaging/why-flip-chip-shortened-the-interconnect.md)
+- [`../packaging/why-advanced-packaging-became-architecture.md`](../packaging/why-advanced-packaging-became-architecture.md)
 - [`../pcb/why-printed-wiring-replaced-hand-wiring.md`](../pcb/why-printed-wiring-replaced-hand-wiring.md)
 - [`../pcb/why-the-board-became-a-system-layer.md`](../pcb/why-the-board-became-a-system-layer.md)
 - [`../pcb/why-surface-mount-changed-the-board-factory.md`](../pcb/why-surface-mount-changed-the-board-factory.md)
+- [`../pcb/why-inspection-became-machine-vision-and-electrical-test.md`](../pcb/why-inspection-became-machine-vision-and-electrical-test.md)
 
 ## Experiments
 
@@ -87,11 +104,23 @@ Third field set:
 - [`../../experiments/minienvironment-exposure/`](../../experiments/minienvironment-exposure/)
 - [`../../experiments/design-rule-interface/`](../../experiments/design-rule-interface/)
 
+Fourth field set:
+
+- [`../../experiments/process-control-loop/`](../../experiments/process-control-loop/)
+- [`../../experiments/screening-tradeoff/`](../../experiments/screening-tradeoff/)
+- [`../../experiments/electromigration-stress/`](../../experiments/electromigration-stress/)
+- [`../../experiments/thermal-cycle-fatigue/`](../../experiments/thermal-cycle-fatigue/)
+- [`../../experiments/inspection-tradeoff/`](../../experiments/inspection-tradeoff/)
+- [`../../experiments/fab-traceability/`](../../experiments/fab-traceability/)
+- [`../../experiments/layout-hierarchy/`](../../experiments/layout-hierarchy/)
+- [`../../experiments/multidie-yield/`](../../experiments/multidie-yield/)
+
 ## Source maps
 
 - [`../references/manufacturing-substrate-field-set.md`](../references/manufacturing-substrate-field-set.md)
 - [`../references/manufacturing-substrate-2-field-set.md`](../references/manufacturing-substrate-2-field-set.md)
 - [`../references/manufacturing-substrate-3-field-set.md`](../references/manufacturing-substrate-3-field-set.md)
+- [`../references/manufacturing-substrate-4-field-set.md`](../references/manufacturing-substrate-4-field-set.md)
 
 ## What this track is trying to preserve
 
@@ -100,24 +129,23 @@ The manufacturing layer is unusually easy to erase from computer history because
 A chip data sheet rarely tells you about:
 
 ```text
-zone refining
-crystal pullers
+zone refining / crystal pullers
 wafer slicing / polishing
-mask artwork / reticle writing
+mask artwork / GDSII / fracture / reticle writing
 projection optics / stage control
 implant beams / anneal
-cleanroom shifts / sealed carriers
-wafer probing / ATE programs
-binning / failure analysis
-wire bonds / solder bumps
-package inspection
-board drilling / plating
-paste printing / pick-and-place / reflow
-AOI / X-ray / rework
-foundry customer engineering
-PDK / design-rule maintenance
+SPC charts / parametric test / wafer maps
+yield holds / excursion review
+probe cards / ATE programs / burn-in
+cleanroom shifts / SMIF / FOUP / AMHS
+MES / recipe governance / lot genealogy
+wire bonds / solder bumps / underfill / interposers
+package thermal cycling / electromigration
+board drilling / plating / paste / placement / reflow
+AOI / ICT / X-ray / failure analysis / rework
+foundry customer engineering / PDK / design-rule maintenance
 ```
 
-Yet these are precisely the things that determine whether a design can be built once, a thousand times, or a billion times.
+Yet these are precisely the things that determine whether a design can be built once, a thousand times, or a billion times — and whether it can still work years later.
 
-> **The semiconductor revolution is not only the history of smaller switches. It is the history of an industrial system learning to control matter, geometry, interfaces, defects, feedback loops, and organizational boundaries at microscopic scale — then connect the result reliably at package, board, and system scale.**
+> **The semiconductor revolution is not only the history of smaller switches. It is the history of an industrial system learning to control matter, geometry, populations, time, data lineage, interfaces, defects, and organizational boundaries at microscopic scale — then connect the result reliably at package, board, and system scale.**
