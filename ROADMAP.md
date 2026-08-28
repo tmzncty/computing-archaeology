@@ -51,21 +51,25 @@ Questions:
 - Why were census, accounting, railway, and office workflows so important?
 - How did card dimensions and column counts become software-visible constraints?
 - What changes when programs are physical decks that can be dropped, sorted, duplicated, and queued?
+- How do sort, match, deduplicate, and merge operations exist before general-purpose software?
 
 Completed first treatments:
 
 - [x] [`docs/interaction/why-programs-were-holes.md`](docs/interaction/why-programs-were-holes.md) — why punched media fit data processing.
 - [x] [`docs/interaction/why-eighty-columns-survived.md`](docs/interaction/why-eighty-columns-survived.md) — IBM's 80-column card, 72/80-column programming practice, sequence fields, and format fossilization.
+- [x] [`docs/interaction/why-sorting-cards-was-data-processing.md`](docs/interaction/why-sorting-cards-was-data-processing.md) — Hollerith/IBM sort pipelines, the 077 collator, sorted-stream reconciliation, and labor hidden inside “file processing.”
 - [x] [`experiments/card-columns/`](experiments/card-columns/) — fixed-width card images, shuffled deck, sequence-based recovery.
+- [x] [`experiments/card-sort-merge/`](experiments/card-sort-merge/) — unordered repeated lookup versus ordered merge-style comparison.
 
 Still deepen with:
 
-- Jacquard control media;
-- Hollerith's census machinery and early card formats;
-- IBM readers, sorters, punches, reproducing punches, tabulators;
+- Jacquard control media and exact transmission mechanisms;
+- Hollerith's original patents and census machinery;
+- primary IBM 077 operating/customer-engineering manuals;
+- readers, sorters, punches, reproducing punches, tabulators;
 - dedicated paper-tape history;
-- card verification/keypunch labor;
-- one substantial card-sorting data-processing experiment rather than only source-deck recovery.
+- verification/keypunch labor;
+- multi-pass radix/card sorting experiment with realistic bin constraints.
 
 ## M3 — Relays, switching, and the telephone inheritance
 
@@ -123,6 +127,7 @@ Questions:
 - Why did magnetic core become such a dominant compromise?
 - When does reading or simply waiting physically damage stored state?
 - Why can a storage device stream quickly while still having terrible random access?
+- What changes when a large business file finally supports direct record retrieval?
 
 Completed first treatments:
 
@@ -132,11 +137,13 @@ Completed first treatments:
 - [x] [`docs/memory/why-drum-memory-made-programmers-wait.md`](docs/memory/why-drum-memory-made-programmers-wait.md) — IBM 650 rotational timing.
 - [x] [`docs/memory/why-core-memory-was-worth-weaving.md`](docs/memory/why-core-memory-was-worth-weaving.md) — coincident-current core memory, destructive read/restore, and labor.
 - [x] [`docs/memory/why-tape-made-you-think-sequentially.md`](docs/memory/why-tape-made-you-think-sequentially.md) — sequential tape geometry, vacuum buffering, interblock gaps, blocking, and stream-oriented algorithms.
+- [x] [`docs/memory/why-disk-made-random-access-a-business-feature.md`](docs/memory/why-disk-made-random-access-a-business-feature.md) — RAMAC direct-access motivation, moving-head geometry, manufacturing, and the new software obligations created by freedom from sequence.
 - [x] [`experiments/serial-memory/`](experiments/serial-memory/)
 - [x] [`experiments/crt-refresh/`](experiments/crt-refresh/)
 - [x] [`experiments/drum-timing/`](experiments/drum-timing/)
 - [x] [`experiments/core-memory/`](experiments/core-memory/)
 - [x] [`experiments/tape-locality/`](experiments/tape-locality/)
+- [x] [`experiments/disk-locality/`](experiments/disk-locality/) — synthetic seek/rotation/locality model.
 
 Still deepen with:
 
@@ -145,8 +152,9 @@ Still deepen with:
 - core inhibit wiring and commercial production at scale;
 - UNIVAC/IBM tape formats, controllers, tape marks, buffering, and operating-system libraries;
 - external sorting / tape merge as a full reproducible exercise;
-- early semiconductor memory;
-- RAMAC and disk geometry as the next locality transition.
+- IBM 305/350 primary manual timing and record formats;
+- disk sectors, cylinders, scheduling, CHS, and later LBA translation;
+- early semiconductor memory.
 
 ## M6 — Stored programs, words, and instruction formats
 
@@ -194,7 +202,7 @@ Still deepen with:
 - scheduler/accounting evolution;
 - labor history across more installations.
 
-## M8 — Time-sharing and terminals
+## M8 — Time-sharing, terminals, and the computer utility
 
 Questions:
 
@@ -202,23 +210,30 @@ Questions:
 - Why did early terminals look like teletypes?
 - How did line speed shape command languages and interfaces?
 - What hardware makes mutually independent users safe enough to share one machine?
+- What changes when users expect computing to be continuously available infrastructure?
 
 Completed first treatments:
 
 - [x] [`docs/interaction/why-terminals-were-teletypes.md`](docs/interaction/why-terminals-were-teletypes.md)
 - [x] [`case-studies/ctss/from-batch-to-conversation.md`](case-studies/ctss/from-batch-to-conversation.md)
+- [x] [`case-studies/multics/when-a-computer-became-a-utility.md`](case-studies/multics/when-a-computer-became-a-utility.md) — computer-utility goals, segmentation+paging, dynamic linking, protection rings, persistent shared service, and design-intent versus implementation caution.
+- [x] [`docs/interaction/why-the-vt100-still-lives-in-your-terminal.md`](docs/interaction/why-the-vt100-still-lives-in-your-terminal.md) — ANSI-mode terminal state, compact display commands, 80/132-column behavior, and compatibility after the physical terminal disappears.
 - [x] [`experiments/tty-budget/`](experiments/tty-budget/)
 - [x] [`experiments/time-sharing/`](experiments/time-sharing/)
+- [x] [`experiments/utility-sharing/`](experiments/utility-sharing/)
+- [x] [`experiments/terminal-state/`](experiments/terminal-state/)
 
 Still deepen with:
 
 - full Model 33 mechanism/interface documentation;
 - Bell 103/modem lineage;
 - CTSS scheduler and swapping detail;
-- Multics as a major case study;
-- early display terminals;
+- Multics implementation evolution beyond 1965 design papers;
+- Multics file-system/access-control details from manuals/source;
+- VT100 hardware, firmware, keyboard, and display-controller architecture;
+- `termcap` / `terminfo` and terminal capability databases;
 - line editors versus full-screen editors;
-- terminal escape sequences and VT-series standards.
+- ANSI terminal-control standard history beyond one DEC product.
 
 ## M9 — Minicomputers, buses, bootstraps, and microprocessors
 
@@ -228,24 +243,29 @@ Questions:
 - Which new constraints appear because memory and I/O remain expensive?
 - Why did buses, memory maps, and peripheral ecosystems matter so much?
 - How do you load software before enough software exists to understand the boot device?
+- How does a target component price become an architecture constraint?
 
-Completed first treatment:
+Completed first treatments:
 
 - [x] [`docs/interaction/why-booting-started-with-switches.md`](docs/interaction/why-booting-started-with-switches.md) — PDP-8 front-panel loading, RIM/BIN loader chain, octal/operator ergonomics, and bootstrap capability amplification.
-- [x] [`experiments/bootstrap-chain/`](experiments/bootstrap-chain/) — conceptual staged loader.
+- [x] [`docs/architecture/why-unibus-made-a-small-computer-an-ecosystem.md`](docs/architecture/why-unibus-made-a-small-computer-an-ecosystem.md) — shared asynchronous bus, DMA-capable masters, memory-mapped devices, arbitration, and peripheral-platform economics.
+- [x] [`docs/architecture/why-the-6502-was-designed-backward-from-price.md`](docs/architecture/why-the-6502-was-designed-backward-from-price.md) — price target -> die area -> architecture/process/yield/documentation decisions.
+- [x] [`experiments/bootstrap-chain/`](experiments/bootstrap-chain/)
+- [x] [`experiments/shared-bus/`](experiments/shared-bus/)
+- [x] [`experiments/die-economics/`](experiments/die-economics/)
 
 Still deepen with:
 
 - PDP-8 bus/peripheral ecosystem;
-- PDP-11 UNIBUS;
+- original PDP-11/20 UNIBUS documentation and third-party boards;
 - core-to-ROM bootstrap transition;
 - DECtape/disk boot ROMs;
 - Intel 4004/8008/8080;
-- MOS 6502;
 - Z80;
+- 6502 primary ads/data sheets/masks and multiple participant accounts;
 - early hobbyist systems;
-- why the 6502 could be sold so cheaply;
-- memory maps and peripheral registers as architecture.
+- memory maps and peripheral registers as architecture;
+- semiconductor fabrication/yield economics from contemporary production records.
 
 ## M10 — Standards that fossilized into architecture ✅ first field set
 
@@ -253,7 +273,7 @@ Questions:
 
 - Which historical accidents became compatibility requirements?
 - When does installed base beat technical elegance?
-- How do character encodings, byte order, buses, file formats, and protocols become geology inside later systems?
+- How do character encodings, byte order, buses, file formats, terminal behavior, and protocols become geology inside later systems?
 
 Completed first treatments:
 
@@ -261,15 +281,18 @@ Completed first treatments:
 - [x] [`docs/architecture/why-eight-bit-byte.md`](docs/architecture/why-eight-bit-byte.md) — byte width as negotiated architecture/standards outcome.
 - [x] [`docs/standards/why-text-is-full-of-device-fossils.md`](docs/standards/why-text-is-full-of-device-fossils.md) — ASCII controls, CR/LF, TELNET NVT, EBCDIC, and installed-base translation.
 - [x] [`docs/architecture/why-byte-order-became-a-holy-war.md`](docs/architecture/why-byte-order-became-a-holy-war.md) — PDP-11, IBM big-endian lineage, Cohen's terminology, and Internet canonical order.
+- [x] [`docs/interaction/why-the-vt100-still-lives-in-your-terminal.md`](docs/interaction/why-the-vt100-still-lives-in-your-terminal.md) — a standardized physical terminal becoming a long-lived software compatibility target.
 - [x] [`experiments/text-fossils/`](experiments/text-fossils/)
 - [x] [`experiments/endianness/`](experiments/endianness/)
+- [x] [`experiments/terminal-state/`](experiments/terminal-state/)
 
 Still deepen with:
 
 - original ASCII committee records and competing codes;
 - original System/360 EBCDIC/design documentation;
-- terminal control conventions and ANSI escape sequences;
-- little/big-endian implementation rationale in more machine families;
+- ANSI X3.64 development and terminal-control politics;
+- `termcap`, `terminfo`, and application compatibility;
+- little/big-endian rationale in more machine families;
 - x86 compatibility layers;
 - legacy disk sector sizes and CHS/LBA transitions;
 - bus compatibility;
@@ -289,13 +312,15 @@ Themes:
 - human waiting versus machine waiting;
 - capital cost versus utilization;
 - compatibility as a design constraint;
-- specialized accelerators;
+- specialized accelerators and DMA-style offload;
 - remote access and centralized compute;
 - buffering between mismatched timescales;
 - statistical multiplexing and contention;
 - physical phenomena hidden beneath stable abstractions;
 - canonical serialization at system boundaries;
-- background maintenance required to preserve apparently static state.
+- background maintenance required to preserve apparently static state;
+- manufacturing yield and product economics as architecture constraints;
+- ecosystems forming around stable buses, protocols, and tools.
 
 The historical payoff is not “everything repeats.” It is learning to recognize when an old **class of constraint** has returned in a new physical form.
 
