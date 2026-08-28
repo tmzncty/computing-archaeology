@@ -101,6 +101,22 @@ jobs:
         run: python experiments/minienvironment-exposure/minienvironment_exposure.py
       - name: Design-rule interface
         run: python experiments/design-rule-interface/design_rule_interface.py
+      - name: Process-control loop
+        run: python experiments/process-control-loop/process_control_loop.py
+      - name: Screening tradeoff
+        run: python experiments/screening-tradeoff/screening_tradeoff.py
+      - name: Electromigration stress
+        run: python experiments/electromigration-stress/electromigration_stress.py
+      - name: Thermal-cycle fatigue
+        run: python experiments/thermal-cycle-fatigue/thermal_cycle_fatigue.py
+      - name: Inspection tradeoff
+        run: python experiments/inspection-tradeoff/inspection_tradeoff.py
+      - name: Fab traceability
+        run: python experiments/fab-traceability/fab_traceability.py
+      - name: Layout hierarchy
+        run: python experiments/layout-hierarchy/layout_hierarchy.py
+      - name: Multidie yield
+        run: python experiments/multidie-yield/multidie_yield.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
