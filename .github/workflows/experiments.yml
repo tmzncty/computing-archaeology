@@ -37,8 +37,12 @@ jobs:
         run: python experiments/core-memory/core_memory.py
       - name: Tape locality
         run: python experiments/tape-locality/tape_locality.py
+      - name: Disk locality
+        run: python experiments/disk-locality/disk_locality.py
       - name: Card columns
         run: python experiments/card-columns/card_columns.py
+      - name: Card sort merge
+        run: python experiments/card-sort-merge/card_sort_merge.py
       - name: Bootstrap chain
         run: python experiments/bootstrap-chain/bootstrap_chain.py
       - name: Batch economics
@@ -47,6 +51,14 @@ jobs:
         run: python experiments/tty-budget/tty_budget.py
       - name: Time-sharing
         run: python experiments/time-sharing/time_sharing.py
+      - name: Utility sharing
+        run: python experiments/utility-sharing/utility_sharing.py
+      - name: Shared bus
+        run: python experiments/shared-bus/shared_bus.py
+      - name: Terminal state
+        run: python experiments/terminal-state/terminal_state.py
+      - name: Die economics
+        run: python experiments/die-economics/die_economics.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
