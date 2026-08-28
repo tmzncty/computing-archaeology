@@ -71,6 +71,22 @@ jobs:
         run: python experiments/pcb-routing-density/pcb_routing_density.py
       - name: Assembly defects
         run: python experiments/assembly-defects/assembly_defects.py
+      - name: Dopant signal
+        run: python experiments/dopant-signal/dopant_signal.py
+      - name: Wafer scale
+        run: python experiments/wafer-scale/wafer_scale.py
+      - name: Mask replication
+        run: python experiments/mask-replication/mask_replication.py
+      - name: MOS margin
+        run: python experiments/mos-margin/mos_margin.py
+      - name: Firmware iteration
+        run: python experiments/firmware-iteration/firmware_iteration.py
+      - name: Fab tool bottleneck
+        run: python experiments/tool-bottleneck/tool_bottleneck.py
+      - name: SMT density
+        run: python experiments/smt-density/smt_density.py
+      - name: Foundry boundary
+        run: python experiments/foundry-boundary/foundry_boundary.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
