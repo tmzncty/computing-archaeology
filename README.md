@@ -45,7 +45,7 @@ See [`docs/methodology/constraint-first-history.md`](docs/methodology/constraint
 - [`docs/electronic/why-vacuum-tubes.md`](docs/electronic/why-vacuum-tubes.md) — why electronic speed could justify heat, power, failure risk, and a new maintenance culture.
 - [`case-studies/eniac/from-wiring-to-stored-program.md`](case-studies/eniac/from-wiring-to-stored-program.md) — why the transition from physical configuration to coded control was gradual rather than one clean invention.
 
-### Memory and storage: sound, charge, rotation, magnetism, and tape
+### Memory and storage: sound, charge, rotation, magnetism, tape, and disk
 
 - [`docs/memory/why-early-memory-looked-weird.md`](docs/memory/why-early-memory-looked-weird.md) — comparative survey of early memory technologies.
 - [`docs/memory/why-memory-was-a-tube-of-sound.md`](docs/memory/why-memory-was-a-tube-of-sound.md) — how acoustic delay lines made an address into a time at which the word came back.
@@ -53,21 +53,27 @@ See [`docs/methodology/constraint-first-history.md`](docs/methodology/constraint
 - [`docs/memory/why-drum-memory-made-programmers-wait.md`](docs/memory/why-drum-memory-made-programmers-wait.md) — how IBM 650 programmers and assemblers scheduled code around a rotating drum.
 - [`docs/memory/why-core-memory-was-worth-weaving.md`](docs/memory/why-core-memory-was-worth-weaving.md) — coincident-current selection, destructive read/restore, and why manual core weaving belonged inside architecture history.
 - [`docs/memory/why-tape-made-you-think-sequentially.md`](docs/memory/why-tape-made-you-think-sequentially.md) — why high streaming bandwidth could coexist with terrible arbitrary access and why interblock gaps made blocking a systems concern.
+- [`docs/memory/why-disk-made-random-access-a-business-feature.md`](docs/memory/why-disk-made-random-access-a-business-feature.md) — why RAMAC changed the question from “scan the file” to “get this record,” while keeping seek and rotational geometry underneath.
 
 ### Programs, cards, booting, operators, and terminals
 
 - [`docs/interaction/why-programs-were-holes.md`](docs/interaction/why-programs-were-holes.md) — why punched media fit data processing before keyboards and disks did.
+- [`docs/interaction/why-sorting-cards-was-data-processing.md`](docs/interaction/why-sorting-cards-was-data-processing.md) — why sorting, comparing, deduplicating, and merging physical records already resembled later file-processing algorithms.
 - [`docs/interaction/why-eighty-columns-survived.md`](docs/interaction/why-eighty-columns-survived.md) — how an office-machine card format became a source-code and record-format fossil.
 - [`docs/interaction/why-booting-started-with-switches.md`](docs/interaction/why-booting-started-with-switches.md) — why a PDP-8 could begin with an operator toggling a tiny loader into core so that software could load more software.
 - [`docs/interaction/why-batch-processing-made-sense.md`](docs/interaction/why-batch-processing-made-sense.md) — why removing the programmer from the console could improve total installation throughput.
 - [`docs/interaction/why-terminals-were-teletypes.md`](docs/interaction/why-terminals-were-teletypes.md) — why telegraph machines, paper tape, ASCII, telephone lines, and 110-baud printing became one computer-interface lineage.
+- [`docs/interaction/why-the-vt100-still-lives-in-your-terminal.md`](docs/interaction/why-the-vt100-still-lives-in-your-terminal.md) — how ANSI-mode terminal behavior became a compatibility target that survives as software long after the CRT disappeared.
 - [`case-studies/ctss/from-batch-to-conversation.md`](case-studies/ctss/from-batch-to-conversation.md) — what timer interrupts, protection, relocation, buffering, storage, and scheduling had to do before one mainframe could feel personal to many users.
+- [`case-studies/multics/when-a-computer-became-a-utility.md`](case-studies/multics/when-a-computer-became-a-utility.md) — why a continuously available computer utility forced segmentation, paging, protection, sharing, recovery, and persistent storage into one architecture.
 
-### Architecture and standards: decisions that became compatibility
+### Architecture and standards: decisions that became ecosystems and compatibility
 
 - [`docs/architecture/why-word-lengths-were-weird.md`](docs/architecture/why-word-lengths-were-weird.md) — why 18-, 36-, and 60-bit words could be coherent engineering choices.
 - [`docs/architecture/why-eight-bit-byte.md`](docs/architecture/why-eight-bit-byte.md) — why `byte = 8 bits` is a historical outcome, not a law of nature.
 - [`docs/architecture/why-byte-order-became-a-holy-war.md`](docs/architecture/why-byte-order-became-a-holy-war.md) — why local byte layout became an interoperability problem and why networks need canonical serialization.
+- [`docs/architecture/why-unibus-made-a-small-computer-an-ecosystem.md`](docs/architecture/why-unibus-made-a-small-computer-an-ecosystem.md) — why a shared, arbitrated bus with DMA and device registers helped turn a minicomputer into a peripheral platform.
+- [`docs/architecture/why-the-6502-was-designed-backward-from-price.md`](docs/architecture/why-the-6502-was-designed-backward-from-price.md) — how a low selling-price target became a die-area, yield, architecture, documentation, and market constraint.
 - [`docs/standards/why-text-is-full-of-device-fossils.md`](docs/standards/why-text-is-full-of-device-fossils.md) — why CR, LF, BEL, DEL, ASCII, EBCDIC, and TELNET still carry physical-device and installed-base history.
 
 ### Research infrastructure
@@ -75,6 +81,7 @@ See [`docs/methodology/constraint-first-history.md`](docs/methodology/constraint
 - [`docs/references/source-ledger.md`](docs/references/source-ledger.md) — the main archival/source map.
 - [`docs/references/strange-constraints-field-set.md`](docs/references/strange-constraints-field-set.md) — Pascaline carry, relay bounce, acoustic delay lines, magnetic core, teletypes, ASCII, and CTSS.
 - [`docs/references/fossils-and-media-field-set.md`](docs/references/fossils-and-media-field-set.md) — CRT refresh, 80-column cards, magnetic tape, front-panel bootstrapping, text standards, and endianness.
+- [`docs/references/forgotten-infrastructure-field-set.md`](docs/references/forgotten-infrastructure-field-set.md) — card sort/merge, RAMAC, UNIBUS, Multics, 6502 economics, and VT100 compatibility.
 - [`ACKNOWLEDGEMENTS.md`](ACKNOWLEDGEMENTS.md) — the people and institutions whose preservation and operational work makes this repository possible.
 - [`ROADMAP.md`](ROADMAP.md) — the larger excavation plan.
 
@@ -96,21 +103,27 @@ The experiments are intentionally small and dependency-free where practical. The
 - [`experiments/drum-timing/`](experiments/drum-timing/) — consecutive versus timing-aware placement on a rotating drum.
 - [`experiments/core-memory/`](experiments/core-memory/) — half-selection, coincidence, destructive read, and restore.
 - [`experiments/tape-locality/`](experiments/tape-locality/) — sequential versus shuffled access and the effect of fixed interblock overhead.
+- [`experiments/disk-locality/`](experiments/disk-locality/) — synthetic seek/rotation costs showing why random access and locality can both matter.
 
-### Media, users, and compatibility
+### Media, users, buses, and compatibility
 
 - [`experiments/card-columns/`](experiments/card-columns/) — 72-character source fields, 8-character sequence fields, deck shuffling, and recovery.
+- [`experiments/card-sort-merge/`](experiments/card-sort-merge/) — compare repeated unordered lookup with sorted streaming reconciliation.
 - [`experiments/bootstrap-chain/`](experiments/bootstrap-chain/) — how a tiny manual seed can load a much larger software environment.
 - [`experiments/batch-economics/`](experiments/batch-economics/) — machine occupancy and throughput under direct setup versus batching.
 - [`experiments/tty-budget/`](experiments/tty-budget/) — slow serial output translated into human waiting time.
 - [`experiments/time-sharing/`](experiments/time-sharing/) — human think-time as a multiplexing opportunity.
+- [`experiments/utility-sharing/`](experiments/utility-sharing/) — protected objects, shared procedures, and availability as explicit utility constraints.
+- [`experiments/shared-bus/`](experiments/shared-bus/) — CPU/device bus ownership, DMA, priority, and contention.
+- [`experiments/terminal-state/`](experiments/terminal-state/) — a tiny stateful ANSI/VT100-style display showing why cursor commands can beat full repaint.
+- [`experiments/die-economics/`](experiments/die-economics/) — a synthetic die-size/yield/cost model illustrating why affordability can constrain architecture.
 - [`experiments/text-fossils/`](experiments/text-fossils/) — separate CR/LF motions and ASCII/EBCDIC byte differences.
 - [`experiments/endianness/`](experiments/endianness/) — the same integer serialized in opposite byte orders and decoded correctly/incorrectly.
 - [`experiments/word-packing/`](experiments/word-packing/) — historical word widths packing different character and field widths.
 
 Every experiment README states its assumptions and, just as importantly, what the model **cannot** establish historically.
 
-## Three recurring patterns
+## Four recurring patterns
 
 ### 1. The physical world leaks upward
 
@@ -137,7 +150,7 @@ terminal character
 
 ```text
 punched card
-    -> fixed-width record, physical ordering, sequence fields
+    -> fixed-width record, physical ordering, sort/merge processing
 
 magnetic tape
     -> sequential scan, blocking, merge/update workflows
@@ -145,8 +158,11 @@ magnetic tape
 magnetic drum
     -> rotational placement, timing-aware instruction layout
 
-slow terminal
-    -> short prompts, line editors, buffered interaction
+magnetic disk
+    -> direct lookup plus seek/rotation locality
+
+slow/stateful terminal
+    -> compact cursor control instead of brute-force repaint
 ```
 
 The algorithm is not designed in a vacuum. It learns the geometry of the device beneath it.
@@ -160,6 +176,9 @@ The algorithm is not designed in a vacuum. It learns the geometry of the device 
 mechanical carriage + paper feed
     -> CR / LF controls
 
+ANSI video terminal
+    -> VT100 compatibility and terminal emulators
+
 host character set
     -> ASCII / EBCDIC translation
 
@@ -172,6 +191,30 @@ manual seed loader
 
 A historical constraint can stop being physical and become **economic**: too much existing software, data, documentation, and hardware expects the old convention.
 
+### 4. Computing becomes infrastructure when interfaces stabilize
+
+```text
+card sort/collate
+    -> repeatable organizational data workflows
+
+random-access disk
+    -> direct record retrieval as a business capability
+
+shared bus
+    -> peripheral ecosystem and DMA-capable devices
+
+computer utility
+    -> persistent shared service with protection and recovery
+
+low-cost CPU
+    -> products that could not previously afford computation
+
+standard terminal behavior
+    -> software ecosystem independent of one physical terminal
+```
+
+A machine becomes ordinary not only when its processor improves, but when storage, interfaces, manufacturing, maintenance, documentation, and shared conventions become dependable enough for other people to build around.
+
 ## Questions this project wants to answer
 
 - Why did Babbage choose decimal wheels even though he considered binary?
@@ -181,11 +224,17 @@ A historical constraint can stop being physical and become **economic**: too muc
 - Why can memory be a sound wave, a CRT charge pattern, a rotating drum, or a hand-threaded ferrite grid?
 - Why can reading memory destroy the bit and still be a good design?
 - Why can a storage device stream quickly but be terrible at random access?
+- Why did random-access disk change business workflows even though seeking still took physical time?
 - Why did programming spend decades as wiring, switches, cards, and paper tape?
+- Why could sort/merge/deduplicate be mechanical card-processing operations before they were software APIs?
 - Why did 80 columns remain meaningful after the card stopped being the physical medium?
 - How do you load software before software exists to load it?
 - Why did batch processing precede interactive computing?
 - Why did terminals inherit so much from telegraphy and office machinery?
+- Why does VT100-style terminal behavior still exist inside modern software emulators?
+- What hardware and operating-system structure are required before a shared machine can behave like a utility?
+- Why can a peripheral become a bus master, and why does that create both performance and contention?
+- Why can a microprocessor's selling-price target determine its allowable die size and architectural complexity?
 - Why are carriage return and line feed still separate characters?
 - Why did ASCII and EBCDIC coexist instead of one code instantly winning?
 - Why were early word lengths so strange by modern standards?
@@ -214,7 +263,7 @@ Historical claims are cited as close to the claim as practical. Prefer, in rough
 
 A source can be valuable without being neutral. Corporate histories, memoirs, oral histories, inventor descriptions, advertisements, standards documents, and modern reconstructions are identified for what they are.
 
-Current material draws on the Computer History Museum, Bitsavers, IBM and DEC documentation, CDC design records, MIT/Project MAC and CTSS records, the University of Manchester, the University of Pennsylvania, Smithsonian collections, Museums Victoria, the National Museum of Computing, ACONIT/Inria, Bell System publications, IETF/RFC archives, and specialist preservation sites.
+Current material draws on the Computer History Museum, Bitsavers, IBM and DEC documentation, CDC design records, MIT/Project MAC, CTSS and Multics records, the University of Manchester, the University of Pennsylvania, Smithsonian collections, Museums Victoria, the National Museum of Computing, ACONIT/Inria, Bell System publications, IETF/RFC archives, and specialist restoration/preservation sites.
 
 ## Authorship and assistance
 
@@ -228,8 +277,8 @@ AI-assisted text in this repository should be treated like any other secondary s
 
 **M0 — method and first excavations: complete.**
 
-The repository now has defensible first treatments spanning mechanical arithmetic, electromechanical logic, early electronics, serial/random-access memory, magnetic mass storage, punched/batch workflows, startup/bootstrapping, slow terminals, time-sharing, word/byte architecture, character standards, and interoperability fossils, with runnable constraint experiments attached to the major mechanisms.
+The repository now has defensible first treatments spanning mechanical arithmetic, electromechanical logic, early electronics, serial/random-access memory, magnetic mass storage, punched/batch workflows, startup/bootstrapping, slow and video terminals, time-sharing and computer-utility architecture, minicomputer buses, low-cost microprocessor economics, word/byte architecture, character standards, and interoperability fossils, with runnable constraint experiments attached to the major mechanisms.
 
-The next milestones can go deeper instead of rebuilding the foundation: Jacquard/Hollerith sorting, full Williams-tube electrical details, core production at scale, magnetic-tape software ecosystems, Multics, PDP buses, Intel 4004/8008, MOS 6502, Z80, disk geometry and sectors, terminal escape standards, x86 compatibility, and the increasingly strange places where old interfaces survive inside modern machines.
+The next milestones can go deeper instead of rebuilding the foundation: Jacquard mechanisms, full sorter/collator primary manuals, commercial core production, disk sectors/CHS/LBA, Multics implementation detail, third-party UNIBUS ecosystems, Intel 4004/8008/8080 and Z80, semiconductor fabrication economics, terminal capability databases, x86 compatibility, and the increasingly strange places where old interfaces survive inside modern machines.
 
 If a page makes you say “why on earth would anyone build it that way?”, that is probably where the excavation should begin.
