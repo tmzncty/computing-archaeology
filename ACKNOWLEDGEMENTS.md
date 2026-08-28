@@ -15,7 +15,7 @@ CHM is a major foundation for the excavation set. The repository currently cites
 - ENIAC and early electronic computers;
 - EDSAC and acoustic delay-line memory;
 - Williams–Kilburn tube memory;
-- magnetic drums and magnetic-core memory;
+- magnetic drums, magnetic tape, and magnetic-core memory;
 - Jay Forrester;
 - IBM Project Stretch archival documents;
 - PDP-1 documentation;
@@ -31,33 +31,79 @@ https://computerhistory.org/
 
 https://bitsavers.org/
 
-A large fraction of serious computing history remains recoverable because people scanned and organized manuals, schematics, program-library documents, listings, field-engineering material, brochures, and training books long after their original manufacturers stopped distributing them.
+A large fraction of serious computing history remains recoverable because people scanned and organized manuals, schematics, program-library documents, listings, field-engineering material, brochures, standards-adjacent documentation, and training books long after their original manufacturers stopped distributing them.
 
-This repository currently relies on Bitsavers-preserved IBM 650 and IBM 704 documentation, Teletype literature, and uses the collection as a map toward many future primary sources.
+This repository now relies on Bitsavers-preserved material including:
 
-Special thanks are due to **Al Kossow** and the many contributors, collectors, donors, and scanners whose work made such material searchable rather than disposable.
+- IBM 650 and SOAP documentation;
+- IBM 704 manuals;
+- IBM System/360 Principles of Operation;
+- IBM Data File Handbook;
+- IBM 29 Card Punch documentation;
+- PDP-8 handbooks and programming manuals;
+- PDP-11 conventions and processor handbooks;
+- Teletype literature.
 
-Independent mirrors and enthusiast archives also matter. A manual preserved on a personal or specialist site may be the only public copy of a manufacturer document that once existed in thousands of service binders.
+Special thanks are due to **Al Kossow** and the many contributors, collectors, donors, scanners, mirror maintainers, and document identifiers whose work made such material searchable rather than disposable.
+
+Independent mirrors and enthusiast archives also matter. A manual preserved on a university, hobbyist, or specialist site may be the only public copy of a manufacturer document that once existed in thousands of service binders.
+
+### Digital Equipment Corporation documentation and PDP preservation communities
+
+DEC's surviving documentation is now central to the repository's histories of:
+
+- PDP-1 word architecture;
+- PDP-8 front-panel operation and bootstrap loaders;
+- paper-tape loading practice;
+- PDP-11 byte addressing and little-endian organization;
+- minicomputer operator interfaces.
+
+Later preservation communities make the manuals materially useful rather than merely bibliographic citations.
+
+Particular thanks are due to the maintainers of **pdp8online.com**, the University of Iowa PDP-8 preservation project, PDP-11 documentation mirrors, and collectors who preserved machines, front panels, paper tapes, diagnostic programs, and DEC software documents.
+
+The historical fact that a loader once had to be toggled in by hand is far easier to understand when the octal listing, console manual, and surviving panel can still be compared.
 
 ### IBM History and surviving IBM documentation
 
 IBM's historical pages and preserved primary manuals are currently used for:
 
 - Hollerith and punched-card data processing;
-- the IBM punched-card ecosystem;
+- the 1928 80-column IBM card;
+- keypunch and card-oriented workflows;
 - the IBM 650 and magnetic-drum computing;
 - SOAP / optimal drum placement;
 - the IBM 704's 36-bit organization;
+- IBM 726/729-era magnetic-tape systems;
+- vacuum-column tape engineering;
 - IBM Project Stretch;
-- System/360 and the consolidation of byte-oriented compatibility.
+- EBCDIC and System/360 compatibility;
+- the continuing cost of preserving long-lived data and code conventions.
 
 Corporate histories are cited as institutional sources rather than treated as neutral final authorities. Surviving period manuals and engineering memos are preferred for technical claims.
 
 https://www.ibm.com/history
 
+### RFC Editor / IETF archival infrastructure
+
+The history of network text and byte order is unusually well served by a public paper trail.
+
+The repository currently uses:
+
+- RFC 20 for ASCII network interchange and control-character definitions;
+- RFC 318 for TELNET's Network Virtual Terminal and CR-LF convention;
+- RFC 791 for Internet Protocol byte-transmission order;
+- IEN 137 for Danny Cohen's “On Holy Wars and a Plea for Peace.”
+
+https://www.rfc-editor.org/
+
+https://www.ietf.org/
+
+Thanks are due not only to the original authors and working groups but also to the people who kept early RFCs and Internet Experiment Notes readable, searchable, and stably linked decades after the network that produced them changed beyond recognition.
+
 ### MIT, Project MAC, and the CTSS preservation community
 
-MIT documentation now supports the repository's Whirlwind/core-memory and CTSS/time-sharing excavations.
+MIT documentation supports the repository's Whirlwind/core-memory and CTSS/time-sharing excavations.
 
 The surviving CTSS manuals and technical notes make it possible to reconstruct details that disappear in broad summaries: timer interrupts, memory protection and relocation, terminal character buffering, IBM 7750 communication paths, secondary storage, and line-oriented editing.
 
@@ -100,11 +146,13 @@ A memory technology becomes much easier to understand when the heater box is pre
 
 ### University of Manchester / Digital60
 
-The University of Manchester's preservation of Manchester Baby, Mark I, Williams–Kilburn storage, original papers, technical recollections, and digitized documents makes it possible to discuss the stored-program transition without reducing it to a slogan.
+The University of Manchester's preservation of the Manchester Baby, Mark I, Williams–Kilburn storage, original papers, technical recollections, and digitized documents makes it possible to discuss CRT memory from contemporary engineering evidence rather than folklore.
+
+Tom Kilburn's 1947 report is especially valuable because the preserved transcription exposes the real design constraints: charge decay, regeneration, focus, screen quality, pickup signals, spot size, and capacity.
 
 https://curation.cs.manchester.ac.uk/digital60/
 
-Thanks are due both to the original Manchester computing teams and to the later historians, computer-conservation volunteers, archivists, and university staff who kept their documentation accessible.
+Thanks are due both to the original Manchester computing teams and to the later historians, editors, computer-conservation volunteers, archivists, and university staff who kept their documentation accessible.
 
 ### University of Pennsylvania
 
@@ -116,7 +164,7 @@ https://almanac.upenn.edu/
 
 TNMOC's Colossus collection and reconstruction work preserve a machine whose wartime secrecy could easily have left it as a thin legend rather than an inspectable engineering system.
 
-The EDSAC Replica Project is also valuable for a different reason: it documents reconstruction uncertainty and the practical substitutions required when a historical technology such as mercury delay-line storage cannot simply be copied without qualification.
+The EDSAC Replica Project also documents reconstruction uncertainty and the practical substitutions required when a historical technology such as mercury delay-line storage cannot simply be copied without qualification.
 
 https://www.tnmoc.org/
 
@@ -145,6 +193,7 @@ The current material builds on the work of historical engineers, programmers, op
 - **Joseph Clement** — precision engineering and construction work for Difference Engine No. 1;
 - **Ada Lovelace** — published notes on the Analytical Engine and its possible symbolic reach;
 - **Herman Hollerith** — punched-card statistical data processing;
+- IBM card designers, keypunch engineers, card-plant workers, sorters, verifiers, operators, and clerical workers who turned cardboard into information infrastructure;
 - **George Stibitz** — relay calculation and remote computing demonstration;
 - the generations of telephone relay engineers and maintainers whose switching knowledge made reliable electromechanical logic practical;
 - **Tommy Flowers** and the Colossus teams — large-scale electronic switching informed by telecommunications engineering;
@@ -152,17 +201,22 @@ The current material builds on the work of historical engineers, programmers, op
 - **John von Neumann** — the influential 1945 EDVAC report, understood in the context of the larger ENIAC/EDVAC design community;
 - **Kathleen McNulty**, **Frances Bilas**, **Betty Jean Jennings**, **Ruth Lichterman**, **Marlyn Wescoff**, and **Betty Snyder** — ENIAC programming work joining mathematics, machine configuration, timing, debugging, and diagnosis;
 - **Maurice Wilkes** and the EDSAC team — practical stored-program computing service and acoustic delay-line systems;
-- **Frederic Williams**, **Tom Kilburn**, and colleagues at Manchester — Williams–Kilburn storage and the Manchester Baby;
+- **Frederic Williams**, **Tom Kilburn**, **Geoff Tootill**, and colleagues at Manchester — electrostatic CRT storage and the Manchester Baby;
 - **Jay W. Forrester** and the Whirlwind team — coincident-current magnetic-core memory and real-time computing;
 - the MIT laboratory assistants and production workers who physically threaded, wired, inspected, tested, and repaired magnetic-core arrays;
+- IBM and Remington Rand tape engineers who turned magnetic recording into high-speed computer storage, including the mechanical work required to buffer reel inertia and protect fragile media;
+- tape librarians, operators, mount crews, and data-processing workers whose work made “read the tape” a functioning institutional operation;
 - **Werner Buchholz** and the IBM Project Stretch team — word-length, byte, and architecture design work;
 - **James E. Thornton**, **Seymour Cray**, and the CDC 6600 team — architecture shaped around scientific throughput, instruction packing, and floating-point precision;
 - **Robert L. Patrick**, **Owen Mock**, the GM Research / North American Aviation teams, and later SHARE participants — early batch and operating-system practice;
 - the programmers who developed **SOAP** and related IBM 650 tools, turning drum geometry into an assembler problem rather than permanent manual drudgery;
 - **Fernando Corbató**, **Marjorie Merwin-Daggett**, **Robert Daley**, **Jerome Saltzer**, and the wider MIT Computation Center / Project MAC community — CTSS, time-sharing, protection, interactive use, and preserved technical documentation;
-- **Bob Bemer** and the larger standards community behind ASCII — character interchange as a compatibility problem rather than merely a code table.
+- **Bob Bemer** and the larger standards community behind ASCII — character interchange as a compatibility problem rather than merely a code table;
+- **Vint Cerf**, **Jon Postel**, and the early Network Working Group participants whose documents made terminal and byte interchange conventions explicit;
+- **Danny Cohen** — for framing byte-order conflict as an interoperability problem and giving the Big-/Little-Endian dispute its enduring vocabulary;
+- DEC engineers and technical writers whose handbooks documented front-panel loading, RIM/BIN loaders, PDP-11 byte addressing, and the practical details later histories often compress into one sentence.
 
-This list is not a claim that these systems were created by isolated individuals. Large computing projects were collective engineering efforts involving many people whose names are less visible in popular histories.
+This list is not a claim that these systems were created by isolated individuals. Large computing projects and standards were collective engineering efforts involving many people whose names are less visible in popular histories.
 
 ## The people hidden behind “the machine ran”
 
@@ -172,11 +226,14 @@ A phrase such as “the computer executed the job” can conceal an entire produ
 
 ```text
 keypunching
-card checking
+card checking and verification
+card manufacturing and sorting
 messenger work
 media preparation
 console operation
-tape mounting
+front-panel loading
+tape mounting and labeling
+tape-library work
 printer operation
 fault diagnosis
 preventive maintenance
@@ -186,11 +243,16 @@ core threading and inspection
 output sorting
 documentation
 standards work
+archive preservation
 ```
 
 The same is true of hardware abstractions.
 
 A box labeled `CORE MEMORY` can hide ferrite production, wire preparation, threading, termination, testing, repair, sense electronics, and the dexterity of the people assembling the planes.
+
+A command labeled `READ TAPE` can hide a reel library, physical mounts, media labeling, vacuum-column transport, cleaning, error handling, and scheduled data-processing work.
+
+A file labeled `SOURCE` can inherit assumptions from a physical card that someone had to keypunch, verify, transport, sort, and recover if its deck order failed.
 
 A box labeled `TERMINAL` can hide paper handling, type mechanisms, telephone circuits, maintenance, code standards, and communications operators.
 
@@ -199,7 +261,9 @@ Future additions should actively recover, where sources permit:
 - operators;
 - programmers;
 - wiring and assembly workers;
-- keypunch operators;
+- keypunch and verifier operators;
+- card-production workers;
+- tape librarians and mount operators;
 - technicians;
 - maintenance staff;
 - production workers;
@@ -209,9 +273,10 @@ Future additions should actively recover, where sources permit:
 - clerical workers;
 - documentation writers;
 - standards participants;
+- preservation scanners and cataloguers;
 - users whose workflows shaped the machines.
 
-Acknowledgement should not be ceremonial. Labor, maintenance, and institutional practice are part of the causal history of computing.
+Acknowledgement should not be ceremonial. Labor, maintenance, standards work, and institutional practice are part of the causal history of computing.
 
 ## Historians and preservation researchers
 
@@ -219,9 +284,9 @@ This project increasingly depends on historians who have challenged deceptively 
 
 The ENIAC/stored-program section in particular benefits from work by **Thomas Haigh, Mark Priestley, and Crispin Rope**, whose reconstruction of ENIAC programming and later modification demonstrates why machine logs, operating practices, and exact definitions matter.
 
-The project should continue to deepen its use of scholarship from **IEEE Annals of the History of Computing**, the **Charles Babbage Institute**, museum research programs, university archives, and scholarly monographs.
+The project should continue to deepen its use of scholarship from **IEEE Annals of the History of Computing**, the **Charles Babbage Institute**, museum research programs, university archives, standards archives, and scholarly monographs.
 
-Preservation researchers deserve equal visibility. The work of scanning, cataloguing, identifying revisions, maintaining mirrors, and recording provenance is often what makes later historical argument possible.
+Preservation researchers deserve equal visibility. The work of scanning, cataloguing, identifying revisions, maintaining mirrors, transcribing old reports, and recording provenance is often what makes later historical argument possible.
 
 ## AI assistance
 
@@ -231,6 +296,6 @@ AI assistance is acknowledged here for transparency, not treated as historical a
 
 ## Thank you
 
-If you digitized an old manual, catalogued a machine, recorded an oral history, preserved a box of engineering memos, restored an obsolete computer, scanned a punched card, threaded a core plane, adjusted a relay, maintained a mirror after the original site disappeared, interviewed an operator, or wrote careful scholarship about a system nobody thought anyone would care about fifty years later:
+If you digitized an old manual, catalogued a machine, recorded an oral history, preserved a box of engineering memos, restored an obsolete computer, scanned a punched card, threaded a core plane, mounted a tape reel, toggled a loader into a front panel, adjusted a relay, maintained a mirror after the original site disappeared, transcribed a fading technical report, interviewed an operator, or wrote careful scholarship about a system nobody thought anyone would care about fifty years later:
 
 **this project is able to ask better questions because you kept the evidence alive.**
