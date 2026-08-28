@@ -87,6 +87,20 @@ jobs:
         run: python experiments/smt-density/smt_density.py
       - name: Foundry boundary
         run: python experiments/foundry-boundary/foundry_boundary.py
+      - name: Implant dose
+        run: python experiments/implant-dose/implant_dose.py
+      - name: Lithography throughput
+        run: python experiments/lithography-throughput/lithography_throughput.py
+      - name: Test economics
+        run: python experiments/test-economics/test_economics.py
+      - name: Bond thermal budget
+        run: python experiments/bond-thermal-budget/bond_thermal_budget.py
+      - name: Flip-chip interconnect
+        run: python experiments/flip-chip-interconnect/flip_chip_interconnect.py
+      - name: Minienvironment exposure
+        run: python experiments/minienvironment-exposure/minienvironment_exposure.py
+      - name: Design-rule interface
+        run: python experiments/design-rule-interface/design_rule_interface.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
