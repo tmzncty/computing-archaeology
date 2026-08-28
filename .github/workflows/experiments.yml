@@ -131,6 +131,24 @@ jobs:
         run: python experiments/static-particle-attraction/static_particle_attraction.py
       - name: Abatement capacity
         run: python experiments/abatement-capacity/abatement_capacity.py
+      - name: Wet chemical purity
+        run: python experiments/wet-chem-purity/wet_chem_purity.py
+      - name: Photoresist process window
+        run: python experiments/resist-window/resist_window.py
+      - name: CMP planarity
+        run: python experiments/cmp-planarity/cmp_planarity.py
+      - name: Furnace material budget
+        run: python experiments/furnace-material-budget/furnace_material_budget.py
+      - name: Tubing extractables
+        run: python experiments/tubing-extractables/tubing_extractables.py
+      - name: Filter tradeoff
+        run: python experiments/filter-tradeoff/filter_tradeoff.py
+      - name: Flow-control error
+        run: python experiments/flow-control-error/flow_control_error.py
+      - name: Build-up substrate stack
+        run: python experiments/build-up-stack/build_up_stack.py
+      - name: PCB material stack
+        run: python experiments/pcb-material-stack/pcb_material_stack.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
