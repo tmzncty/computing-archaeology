@@ -9,11 +9,13 @@ materials
 -> crystal / wafer
 -> semiconductor process
 -> lithography / equipment
--> yield and test
+-> implant / anneal
+-> yield / probe / automatic test
 -> packaging
 -> printed wiring
 -> board assembly
 -> inspection / rework
+-> automated material handling
 -> system integration
 ```
 
@@ -21,30 +23,37 @@ This track reconstructs the manufacturing capabilities that made computing scala
 
 ## Materials, crystals, and wafers
 
-- [`../semiconductor/why-silicon-became-the-platform.md`](../semiconductor/why-silicon-became-the-platform.md) — why silicon and silicon dioxide became a process platform.
-- [`../semiconductor/why-semiconductor-purity-became-an-industrial-process.md`](../semiconductor/why-semiconductor-purity-became-an-industrial-process.md) — zone refining, Czochralski-derived crystal growth, float-zone processing, and why intentional doping requires extreme purity.
-- [`../semiconductor/why-wafers-kept-getting-larger.md`](../semiconductor/why-wafers-kept-getting-larger.md) — why wafer area is economic leverage and why diameter transitions require factory-wide changes.
+- [`../semiconductor/why-silicon-became-the-platform.md`](../semiconductor/why-silicon-became-the-platform.md)
+- [`../semiconductor/why-semiconductor-purity-became-an-industrial-process.md`](../semiconductor/why-semiconductor-purity-became-an-industrial-process.md)
+- [`../semiconductor/why-wafers-kept-getting-larger.md`](../semiconductor/why-wafers-kept-getting-larger.md)
 
 ## Wafer processing and lithography
 
-- [`../semiconductor/why-planar-processing-made-ic-manufacturing-repeatable.md`](../semiconductor/why-planar-processing-made-ic-manufacturing-repeatable.md) — planar processing and integration as a repeatable wafer process.
-- [`../semiconductor/why-mask-making-became-a-machine-tool-industry.md`](../semiconductor/why-mask-making-became-a-machine-tool-industry.md) — rubylith, photographic reduction, step-and-repeat, overlay, masks, and lithography-tool specialization.
-- [`../semiconductor/why-mos-was-hard-before-it-was-cheap.md`](../semiconductor/why-mos-was-hard-before-it-was-cheap.md) — MOS surface/interface instability, process maturation, silicon gate, and density economics.
-- [`../semiconductor/why-the-fab-became-a-machine-around-the-machine.md`](../semiconductor/why-the-fab-became-a-machine-around-the-machine.md) — cleanrooms, recipes, metrology, contamination control, and fab operations.
-- [`../semiconductor/why-yield-is-an-architectural-constraint.md`](../semiconductor/why-yield-is-an-architectural-constraint.md) — die area, defect density, test, binning, and cost per good function.
+- [`../semiconductor/why-planar-processing-made-ic-manufacturing-repeatable.md`](../semiconductor/why-planar-processing-made-ic-manufacturing-repeatable.md)
+- [`../semiconductor/why-mask-making-became-a-machine-tool-industry.md`](../semiconductor/why-mask-making-became-a-machine-tool-industry.md)
+- [`../semiconductor/why-lithography-became-a-capital-equipment-race.md`](../semiconductor/why-lithography-became-a-capital-equipment-race.md)
+- [`../semiconductor/why-ion-implantation-made-doping-programmable.md`](../semiconductor/why-ion-implantation-made-doping-programmable.md)
+- [`../semiconductor/why-mos-was-hard-before-it-was-cheap.md`](../semiconductor/why-mos-was-hard-before-it-was-cheap.md)
+- [`../semiconductor/why-the-fab-became-a-machine-around-the-machine.md`](../semiconductor/why-the-fab-became-a-machine-around-the-machine.md)
+- [`../semiconductor/why-yield-is-an-architectural-constraint.md`](../semiconductor/why-yield-is-an-architectural-constraint.md)
 
-## Iteration, equipment, and industrial organization
+## Iteration, equipment, test, and industrial organization
 
-- [`../semiconductor/why-eprom-made-hardware-development-iterative.md`](../semiconductor/why-eprom-made-hardware-development-iterative.md) — why erasable nonvolatile memory shortened firmware feedback loops.
-- [`why-equipment-vendors-became-part-of-the-process.md`](why-equipment-vendors-became-part-of-the-process.md) — furnaces, epitaxy, implantation, probing, lithography, and the second-order industry that manufactures fab capability.
-- [`why-foundries-separated-design-from-fabrication.md`](why-foundries-separated-design-from-fabrication.md) — how independent manufacturing, explicit process interfaces, PDK-like contracts, and the pure-play foundry model changed which chip companies could exist.
+- [`../semiconductor/why-eprom-made-hardware-development-iterative.md`](../semiconductor/why-eprom-made-hardware-development-iterative.md)
+- [`why-equipment-vendors-became-part-of-the-process.md`](why-equipment-vendors-became-part-of-the-process.md)
+- [`why-automatic-test-became-an-industry.md`](why-automatic-test-became-an-industry.md)
+- [`why-smif-put-the-cleanroom-around-the-wafer.md`](why-smif-put-the-cleanroom-around-the-wafer.md)
+- [`why-design-rules-became-an-interface-to-the-fab.md`](why-design-rules-became-an-interface-to-the-fab.md)
+- [`why-foundries-separated-design-from-fabrication.md`](why-foundries-separated-design-from-fabrication.md)
 
 ## Packaging and board assembly
 
-- [`../packaging/why-a-chip-needs-a-package.md`](../packaging/why-a-chip-needs-a-package.md) — fan-out, protection, thermal limits, pin count, and DIP/PCB co-evolution.
-- [`../pcb/why-printed-wiring-replaced-hand-wiring.md`](../pcb/why-printed-wiring-replaced-hand-wiring.md) — printed circuits, Signal Corps Auto-Sembly, batch soldering, reproducibility, and repair.
-- [`../pcb/why-the-board-became-a-system-layer.md`](../pcb/why-the-board-became-a-system-layer.md) — multilayer routing, plated holes, packaging, signal integrity, and board manufacturing as system engineering.
-- [`../pcb/why-surface-mount-changed-the-board-factory.md`](../pcb/why-surface-mount-changed-the-board-factory.md) — why eliminating through-hole leads changed routing density, placement automation, soldering, inspection, and repair economics.
+- [`../packaging/why-a-chip-needs-a-package.md`](../packaging/why-a-chip-needs-a-package.md)
+- [`../packaging/why-wire-bonds-failed-in-strange-colors.md`](../packaging/why-wire-bonds-failed-in-strange-colors.md)
+- [`../packaging/why-flip-chip-shortened-the-interconnect.md`](../packaging/why-flip-chip-shortened-the-interconnect.md)
+- [`../pcb/why-printed-wiring-replaced-hand-wiring.md`](../pcb/why-printed-wiring-replaced-hand-wiring.md)
+- [`../pcb/why-the-board-became-a-system-layer.md`](../pcb/why-the-board-became-a-system-layer.md)
+- [`../pcb/why-surface-mount-changed-the-board-factory.md`](../pcb/why-surface-mount-changed-the-board-factory.md)
 
 ## Experiments
 
@@ -68,10 +77,21 @@ Second field set:
 - [`../../experiments/smt-density/`](../../experiments/smt-density/)
 - [`../../experiments/foundry-boundary/`](../../experiments/foundry-boundary/)
 
+Third field set:
+
+- [`../../experiments/implant-dose/`](../../experiments/implant-dose/)
+- [`../../experiments/lithography-throughput/`](../../experiments/lithography-throughput/)
+- [`../../experiments/test-economics/`](../../experiments/test-economics/)
+- [`../../experiments/bond-thermal-budget/`](../../experiments/bond-thermal-budget/)
+- [`../../experiments/flip-chip-interconnect/`](../../experiments/flip-chip-interconnect/)
+- [`../../experiments/minienvironment-exposure/`](../../experiments/minienvironment-exposure/)
+- [`../../experiments/design-rule-interface/`](../../experiments/design-rule-interface/)
+
 ## Source maps
 
 - [`../references/manufacturing-substrate-field-set.md`](../references/manufacturing-substrate-field-set.md)
 - [`../references/manufacturing-substrate-2-field-set.md`](../references/manufacturing-substrate-2-field-set.md)
+- [`../references/manufacturing-substrate-3-field-set.md`](../references/manufacturing-substrate-3-field-set.md)
 
 ## What this track is trying to preserve
 
@@ -83,23 +103,21 @@ A chip data sheet rarely tells you about:
 zone refining
 crystal pullers
 wafer slicing / polishing
-mask artwork
-photo-repeaters
-furnace uniformity
-epitaxy reactors
-implant beams
-cleanroom shifts
-wafer probing
-process-control charts
-package assembly
+mask artwork / reticle writing
+projection optics / stage control
+implant beams / anneal
+cleanroom shifts / sealed carriers
+wafer probing / ATE programs
+binning / failure analysis
+wire bonds / solder bumps
+package inspection
 board drilling / plating
-paste printing
-pick-and-place
-reflow
-inspection / rework
+paste printing / pick-and-place / reflow
+AOI / X-ray / rework
 foundry customer engineering
+PDK / design-rule maintenance
 ```
 
 Yet these are precisely the things that determine whether a design can be built once, a thousand times, or a billion times.
 
-> **The semiconductor revolution is not only the history of smaller switches. It is the history of an industrial system learning to control matter, geometry, interfaces, defects, and feedback loops at microscopic scale — then connect the result reliably at board and system scale.**
+> **The semiconductor revolution is not only the history of smaller switches. It is the history of an industrial system learning to control matter, geometry, interfaces, defects, feedback loops, and organizational boundaries at microscopic scale — then connect the result reliably at package, board, and system scale.**
