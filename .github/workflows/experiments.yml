@@ -59,6 +59,18 @@ jobs:
         run: python experiments/terminal-state/terminal_state.py
       - name: Die economics
         run: python experiments/die-economics/die_economics.py
+      - name: Wafer yield
+        run: python experiments/wafer-yield/wafer_yield.py
+      - name: Lithography overlay
+        run: python experiments/lithography-overlay/lithography_overlay.py
+      - name: Process stack
+        run: python experiments/process-stack/process_stack.py
+      - name: Package pin budget
+        run: python experiments/package-pin-budget/package_pin_budget.py
+      - name: PCB routing density
+        run: python experiments/pcb-routing-density/pcb_routing_density.py
+      - name: Assembly defects
+        run: python experiments/assembly-defects/assembly_defects.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
