@@ -117,6 +117,20 @@ jobs:
         run: python experiments/layout-hierarchy/layout_hierarchy.py
       - name: Multidie yield
         run: python experiments/multidie-yield/multidie_yield.py
+      - name: UPW contamination budget
+        run: python experiments/upw-contamination-budget/upw_contamination_budget.py
+      - name: Airflow removal
+        run: python experiments/airflow-removal/airflow_removal.py
+      - name: Gas delivery purity
+        run: python experiments/gas-delivery-purity/gas_delivery_purity.py
+      - name: Vacuum gas load
+        run: python experiments/vacuum-gas-load/vacuum_gas_load.py
+      - name: Facility stability budget
+        run: python experiments/facility-stability-budget/facility_stability_budget.py
+      - name: Static particle attraction
+        run: python experiments/static-particle-attraction/static_particle_attraction.py
+      - name: Abatement capacity
+        run: python experiments/abatement-capacity/abatement_capacity.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
