@@ -149,6 +149,24 @@ jobs:
         run: python experiments/build-up-stack/build_up_stack.py
       - name: PCB material stack
         run: python experiments/pcb-material-stack/pcb_material_stack.py
+      - name: Sputter target utilization
+        run: python experiments/target-utilization/target_utilization.py
+      - name: Precursor cycle window
+        run: python experiments/precursor-cycle-window/precursor_cycle_window.py
+      - name: Photoacid amplification
+        run: python experiments/photoacid-amplification/photoacid_amplification.py
+      - name: Copper superfill
+        run: python experiments/copper-superfill/copper_superfill.py
+      - name: Wafer stage uniformity
+        run: python experiments/wafer-stage-uniformity/wafer_stage_uniformity.py
+      - name: Seal aging budget
+        run: python experiments/seal-aging-budget/seal_aging_budget.py
+      - name: Pad conditioning window
+        run: python experiments/pad-conditioning-window/pad_conditioning_window.py
+      - name: Surface finish tradeoff
+        run: python experiments/surface-finish-tradeoff/surface_finish_tradeoff.py
+      - name: Microvia fill
+        run: python experiments/microvia-fill/microvia_fill.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
