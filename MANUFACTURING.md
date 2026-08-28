@@ -20,30 +20,44 @@ Start with [`docs/manufacturing/README.md`](docs/manufacturing/README.md).
 - [`docs/semiconductor/why-the-fab-became-a-machine-around-the-machine.md`](docs/semiconductor/why-the-fab-became-a-machine-around-the-machine.md)
 - [`docs/semiconductor/why-yield-is-an-architectural-constraint.md`](docs/semiconductor/why-yield-is-an-architectural-constraint.md)
 
-## Equipment, automation, test, and industry structure
+## Process control, test, automation, and manufacturing data
 
 - [`docs/manufacturing/why-equipment-vendors-became-part-of-the-process.md`](docs/manufacturing/why-equipment-vendors-became-part-of-the-process.md)
 - [`docs/manufacturing/why-automatic-test-became-an-industry.md`](docs/manufacturing/why-automatic-test-became-an-industry.md)
+- [`docs/manufacturing/why-process-control-became-a-product-feature.md`](docs/manufacturing/why-process-control-became-a-product-feature.md)
+- [`docs/manufacturing/why-probe-and-burn-in-screened-a-population.md`](docs/manufacturing/why-probe-and-burn-in-screened-a-population.md)
 - [`docs/manufacturing/why-smif-put-the-cleanroom-around-the-wafer.md`](docs/manufacturing/why-smif-put-the-cleanroom-around-the-wafer.md)
+- [`docs/manufacturing/why-the-300mm-fab-needed-a-digital-shadow.md`](docs/manufacturing/why-the-300mm-fab-needed-a-digital-shadow.md)
 - [`docs/manufacturing/why-design-rules-became-an-interface-to-the-fab.md`](docs/manufacturing/why-design-rules-became-an-interface-to-the-fab.md)
+- [`docs/manufacturing/why-tapeout-became-a-data-interface-to-the-mask-shop.md`](docs/manufacturing/why-tapeout-became-a-data-interface-to-the-mask-shop.md)
 - [`docs/manufacturing/why-foundries-separated-design-from-fabrication.md`](docs/manufacturing/why-foundries-separated-design-from-fabrication.md)
 
-These pages trace the second-order industry beneath semiconductors: crystal growers, mask shops, furnaces, lithography tools, implanters, wafer probers, automatic test, minienvironments, EDA/design-rule interfaces, and foundries that sell process capability as a service.
+These pages trace a second machine hidden inside every fab: measurement, event logs, wafer maps, test programs, carriers, robots, mask data, design rules, and software that keeps physical production state consistent.
+
+## Reliability: when a correct device can still die later
+
+- [`docs/reliability/why-electromigration-made-wires-a-lifetime-limit.md`](docs/reliability/why-electromigration-made-wires-a-lifetime-limit.md)
+- [`docs/reliability/why-solder-joints-and-delamination-became-system-failures.md`](docs/reliability/why-solder-joints-and-delamination-became-system-failures.md)
+
+Reliability history restores time to a device that a schematic draws as timeless: metal migrates, solder creeps and fatigues, interfaces delaminate, and screening itself can consume lifetime.
 
 ## Packaging and board assembly
 
 - [`docs/packaging/why-a-chip-needs-a-package.md`](docs/packaging/why-a-chip-needs-a-package.md)
 - [`docs/packaging/why-wire-bonds-failed-in-strange-colors.md`](docs/packaging/why-wire-bonds-failed-in-strange-colors.md)
 - [`docs/packaging/why-flip-chip-shortened-the-interconnect.md`](docs/packaging/why-flip-chip-shortened-the-interconnect.md)
+- [`docs/packaging/why-advanced-packaging-became-architecture.md`](docs/packaging/why-advanced-packaging-became-architecture.md)
 - [`docs/pcb/why-printed-wiring-replaced-hand-wiring.md`](docs/pcb/why-printed-wiring-replaced-hand-wiring.md)
 - [`docs/pcb/why-the-board-became-a-system-layer.md`](docs/pcb/why-the-board-became-a-system-layer.md)
 - [`docs/pcb/why-surface-mount-changed-the-board-factory.md`](docs/pcb/why-surface-mount-changed-the-board-factory.md)
+- [`docs/pcb/why-inspection-became-machine-vision-and-electrical-test.md`](docs/pcb/why-inspection-became-machine-vision-and-electrical-test.md)
 
 ## Source maps
 
 - [`docs/references/manufacturing-substrate-field-set.md`](docs/references/manufacturing-substrate-field-set.md)
 - [`docs/references/manufacturing-substrate-2-field-set.md`](docs/references/manufacturing-substrate-2-field-set.md)
 - [`docs/references/manufacturing-substrate-3-field-set.md`](docs/references/manufacturing-substrate-3-field-set.md)
+- [`docs/references/manufacturing-substrate-4-field-set.md`](docs/references/manufacturing-substrate-4-field-set.md)
 
 ## Why this deserves its own track
 
@@ -55,18 +69,21 @@ zone refining / crystal growth / wafer preparation
 oxidation / diffusion / epitaxy / implantation
 photoresist / mask making / lithography / reticle inspection
 etch / deposition / contamination control
-wafer probing / automatic test / yield analysis
-sealed carriers / robotic material handling
-wire bonding / flip-chip / packaging
+SPC / metrology / parametric test / wafer maps
+wafer probing / burn-in / automatic test / yield analysis
+sealed carriers / FOUP / robotic material handling
+SECS-GEM / MES / lot and wafer traceability
+GDSII / mask-data preparation / tapeout
+wire bonding / flip-chip / interposer / multidie packaging
 copper-clad laminates / drilling / plating / multilayer PCB
 through-hole / wave solder / SMT / paste / reflow
-inspection / rework / X-ray / field service
+AOI / ICT / X-ray / failure analysis / rework
 semiconductor equipment suppliers
 EDA / design rules / PDK-like interfaces
 foundries / fabless design interfaces
 ```
 
-These are not peripheral production details. They determine what architectures can be manufactured reliably, revised quickly, tested economically, connected densely, and sold cheaply enough to matter.
+These are not peripheral production details. They determine what architectures can be manufactured reliably, revised quickly, tested economically, connected densely, traced after failure, and sold cheaply enough to matter.
 
 ## Runnable manufacturing experiments
 
@@ -102,23 +119,33 @@ Third field set:
 - [`experiments/minienvironment-exposure/`](experiments/minienvironment-exposure/)
 - [`experiments/design-rule-interface/`](experiments/design-rule-interface/)
 
+Fourth field set:
+
+- [`experiments/process-control-loop/`](experiments/process-control-loop/)
+- [`experiments/screening-tradeoff/`](experiments/screening-tradeoff/)
+- [`experiments/electromigration-stress/`](experiments/electromigration-stress/)
+- [`experiments/thermal-cycle-fatigue/`](experiments/thermal-cycle-fatigue/)
+- [`experiments/inspection-tradeoff/`](experiments/inspection-tradeoff/)
+- [`experiments/fab-traceability/`](experiments/fab-traceability/)
+- [`experiments/layout-hierarchy/`](experiments/layout-hierarchy/)
+- [`experiments/multidie-yield/`](experiments/multidie-yield/)
+
 ## Next excavations
 
-The manufacturing track can now go deeper rather than rebuilding its foundation:
+The track can now go deeper into narrower factory subsystems rather than rebuilding the foundation:
 
-- specific e-beam mask-writer and reticle-inspection histories;
-- stepper-to-scanner transition, wavelength changes, and lithography metrology;
+- specific e-beam mask-writer / reticle-inspection tool histories;
+- stepper-to-scanner transitions, wavelengths, resists, focus/overlay metrology;
 - rapid thermal anneal and implant-damage recovery;
-- statistical process control, run-to-run control, parametric test, and yield-learning organizations;
-- probe cards, test sockets, burn-in, and ATE software/programming history;
-- IBM C4, underfill, PGA/QFP/BGA, flip-chip, and package thermal design;
-- purple plague, electromigration, corrosion, delamination, solder fatigue, and other failure mechanisms;
-- phenolic laminates, FR-4, plated-through-hole, multilayer lamination, microvias;
-- wave soldering, paste printing, pick-and-place, reflow, AOI, ICT, X-ray inspection;
-- connectors, sockets, backplanes, cables, power distribution, and field-repair economics;
-- SMIF-to-FOUP, 200/300 mm automated material handling, MES, and electronic lot tracking;
-- semiconductor assembly and PCB production labor/geography;
-- equipment-vendor ecosystems and process co-development;
-- MOSIS, GDSII, PDKs, EDA/IP ecosystems, and the global fabless model.
+- probe-card technologies, sockets, handlers, and tester programming languages;
+- run-to-run/APC and detailed yield-learning organizations;
+- ESD/EOS, TDDB, hot-carrier aging, corrosion, moisture, whiskers, and package cracking;
+- package substrates, ABF, BGA/PGA/QFP, underfill, TSV, interposers, hybrid bonding, and die-to-die interfaces;
+- phenolic laminates, FR-4, microvias, HDI, backplanes, connectors, cables, and power distribution;
+- AOI/ICT/X-ray/acoustic inspection equipment lineages and review labor;
+- 200→300 mm AMHS, stockers, overhead transport, FOUP repair, and factory recovery procedures;
+- SECS/GEM revision history, MES, scheduling, recipe governance, and electronic genealogy;
+- GDSII successors, fracture/job-deck history, OPC, mask correction, and data-volume growth;
+- semiconductor/PCB labor geography, OSAT, and the equipment/material supply chains below the fab.
 
-> **A billion-transistor processor is not only a triumph of logic design. It is evidence that an enormous manufacturing civilization learned to purify matter, grow crystals, reproduce patterns, control interfaces, test populations, move wafers, connect packages, and coordinate factories with extraordinary reliability.**
+> **A billion-transistor processor is not only a triumph of logic design. It is evidence that an enormous manufacturing civilization learned to purify matter, grow crystals, reproduce patterns, measure distributions, screen populations, track material, preserve data lineage, connect packages, and coordinate factories with extraordinary reliability.**
