@@ -4,7 +4,11 @@ A computer history that jumps from transistor invention to integrated circuits a
 
 This repository treats manufacturing as a first-class historical track.
 
-Start with [`docs/manufacturing/README.md`](docs/manufacturing/README.md).
+Start here:
+
+- [`docs/manufacturing/README.md`](docs/manufacturing/README.md) — manufacturing index;
+- [`MATERIALS.md`](MATERIALS.md) — materials, consumables, interfaces, lifetime and household integration;
+- [`MANUFACTURING-COMPLETION.md`](MANUFACTURING-COMPLETION.md) — explicit first-pass completion checklist so remaining work no longer depends on chat memory.
 
 ## Semiconductor material and wafer fabrication
 
@@ -32,9 +36,7 @@ Start with [`docs/manufacturing/README.md`](docs/manufacturing/README.md).
 - [`docs/manufacturing/why-tapeout-became-a-data-interface-to-the-mask-shop.md`](docs/manufacturing/why-tapeout-became-a-data-interface-to-the-mask-shop.md)
 - [`docs/manufacturing/why-foundries-separated-design-from-fabrication.md`](docs/manufacturing/why-foundries-separated-design-from-fabrication.md)
 
-These pages trace a second machine hidden inside every fab: measurement, event logs, wafer maps, test programs, carriers, robots, mask data, design rules, and software that keeps physical production state consistent.
-
-## Facility process layer: manufacturing the artificial environment
+## Facility process layer
 
 - [`docs/facilities/why-ultrapure-water-became-a-process-material.md`](docs/facilities/why-ultrapure-water-became-a-process-material.md)
 - [`docs/facilities/why-clean-air-had-to-keep-moving.md`](docs/facilities/why-clean-air-had-to-keep-moving.md)
@@ -44,26 +46,58 @@ These pages trace a second machine hidden inside every fab: measurement, event l
 - [`docs/facilities/why-static-charge-became-a-yield-problem.md`](docs/facilities/why-static-charge-became-a-yield-problem.md)
 - [`docs/facilities/why-exhaust-and-abatement-became-part-of-the-process.md`](docs/facilities/why-exhaust-and-abatement-became-part-of-the-process.md)
 - [`docs/facilities/why-the-fab-became-a-utility-machine.md`](docs/facilities/why-the-fab-became-a-utility-machine.md)
+- [`docs/facilities/why-semiconductor-vacuum-went-dry.md`](docs/facilities/why-semiconductor-vacuum-went-dry.md)
 
-These pages treat the fab building itself as a process platform. Clean air, ultrapure water, specialty gases, vacuum, cooling, structural stability, static control, exhaust, and abatement are not peripheral utilities once their drift can change yield, uptime, safety, or metrology.
+A fab is not a building containing tools. It is a machine that continuously manufactures the artificial environment in which those tools are allowed to work.
 
 ## Reliability: when a correct device can still die later
+
+### Interconnect and package wear
 
 - [`docs/reliability/why-electromigration-made-wires-a-lifetime-limit.md`](docs/reliability/why-electromigration-made-wires-a-lifetime-limit.md)
 - [`docs/reliability/why-solder-joints-and-delamination-became-system-failures.md`](docs/reliability/why-solder-joints-and-delamination-became-system-failures.md)
 
-Reliability history restores time to a device that a schematic draws as timeless: metal migrates, solder creeps and fatigues, interfaces delaminate, and screening itself can consume lifetime.
+### Device aging
 
-## Packaging and board assembly
+- [`docs/reliability/why-tddb-made-dielectrics-have-lifetimes.md`](docs/reliability/why-tddb-made-dielectrics-have-lifetimes.md)
+- [`docs/reliability/why-hot-carrier-aging-made-switching-history-matter.md`](docs/reliability/why-hot-carrier-aging-made-switching-history-matter.md)
+- [`docs/reliability/why-bti-made-bias-a-lifetime-variable.md`](docs/reliability/why-bti-made-bias-a-lifetime-variable.md)
+
+### Materials that keep changing after shipment
+
+- [`docs/reliability/why-lead-free-solder-rewrote-assembly-reliability.md`](docs/reliability/why-lead-free-solder-rewrote-assembly-reliability.md)
+- [`docs/reliability/why-tin-whiskers-made-metal-finishes-grow-wires.md`](docs/reliability/why-tin-whiskers-made-metal-finishes-grow-wires.md)
+- [`docs/reliability/why-tim-aging-made-cooling-a-lifetime-problem.md`](docs/reliability/why-tim-aging-made-cooling-a-lifetime-problem.md)
+
+Reliability history restores time to objects that schematics draw as timeless.
+
+## Packaging and assembly
 
 - [`docs/packaging/why-a-chip-needs-a-package.md`](docs/packaging/why-a-chip-needs-a-package.md)
 - [`docs/packaging/why-wire-bonds-failed-in-strange-colors.md`](docs/packaging/why-wire-bonds-failed-in-strange-colors.md)
 - [`docs/packaging/why-flip-chip-shortened-the-interconnect.md`](docs/packaging/why-flip-chip-shortened-the-interconnect.md)
 - [`docs/packaging/why-advanced-packaging-became-architecture.md`](docs/packaging/why-advanced-packaging-became-architecture.md)
+- [`docs/packaging/why-moisture-made-plastic-packages-popcorn.md`](docs/packaging/why-moisture-made-plastic-packages-popcorn.md)
+- [`docs/memory/why-alpha-particles-made-packaging-a-memory-problem.md`](docs/memory/why-alpha-particles-made-packaging-a-memory-problem.md)
+
+## Printed-circuit-board manufacturing and reliability
+
 - [`docs/pcb/why-printed-wiring-replaced-hand-wiring.md`](docs/pcb/why-printed-wiring-replaced-hand-wiring.md)
 - [`docs/pcb/why-the-board-became-a-system-layer.md`](docs/pcb/why-the-board-became-a-system-layer.md)
 - [`docs/pcb/why-surface-mount-changed-the-board-factory.md`](docs/pcb/why-surface-mount-changed-the-board-factory.md)
 - [`docs/pcb/why-inspection-became-machine-vision-and-electrical-test.md`](docs/pcb/why-inspection-became-machine-vision-and-electrical-test.md)
+- [`docs/pcb/why-caf-made-laminate-a-reliability-path.md`](docs/pcb/why-caf-made-laminate-a-reliability-path.md)
+- [`docs/pcb/why-ionic-residues-can-grow-dendrites.md`](docs/pcb/why-ionic-residues-can-grow-dendrites.md)
+- [`docs/pcb/why-copper-roughness-and-glass-weave-became-signal-integrity.md`](docs/pcb/why-copper-roughness-and-glass-weave-became-signal-integrity.md)
+- [`docs/pcb/why-via-stubs-had-to-be-drilled-away.md`](docs/pcb/why-via-stubs-had-to-be-drilled-away.md)
+
+## Separable interfaces and household cooling
+
+- [`docs/interconnect/why-separable-contacts-need-plating-force-and-wipe.md`](docs/interconnect/why-separable-contacts-need-plating-force-and-wipe.md)
+- [`docs/interconnect/why-lga-sockets-became-precision-spring-machines.md`](docs/interconnect/why-lga-sockets-became-precision-spring-machines.md)
+- [`docs/thermal/why-heat-pipes-moved-heat-without-a-pump.md`](docs/thermal/why-heat-pipes-moved-heat-without-a-pump.md)
+
+This is where atomic-scale manufacturing finally meets the machine a user can touch.
 
 ## Source maps
 
@@ -72,111 +106,17 @@ Reliability history restores time to a device that a schematic draws as timeless
 - [`docs/references/manufacturing-substrate-3-field-set.md`](docs/references/manufacturing-substrate-3-field-set.md)
 - [`docs/references/manufacturing-substrate-4-field-set.md`](docs/references/manufacturing-substrate-4-field-set.md)
 - [`docs/references/manufacturing-substrate-5-field-set.md`](docs/references/manufacturing-substrate-5-field-set.md)
+- [`docs/references/materials-and-consumables-field-set.md`](docs/references/materials-and-consumables-field-set.md)
+- [`docs/references/deposition-and-interconnect-field-set.md`](docs/references/deposition-and-interconnect-field-set.md)
+- [`docs/references/interfaces-to-home-field-set.md`](docs/references/interfaces-to-home-field-set.md)
+- [`docs/references/manufacturing-completion-field-set.md`](docs/references/manufacturing-completion-field-set.md)
 
-## Why this deserves its own track
+## Status
 
-The computer industry depends on other industries that ordinary architecture histories can make invisible:
+The manufacturing/materials/reliability track is now **first-pass structurally complete** according to [`MANUFACTURING-COMPLETION.md`](MANUFACTURING-COMPLETION.md).
 
-```text
-high-purity semiconductor materials
-zone refining / crystal growth / wafer preparation
-oxidation / diffusion / epitaxy / implantation
-photoresist / mask making / lithography / reticle inspection
-etch / deposition / contamination control
-SPC / metrology / parametric test / wafer maps
-wafer probing / burn-in / automatic test / yield analysis
-sealed carriers / FOUP / robotic material handling
-SECS-GEM / MES / lot and wafer traceability
-GDSII / mask-data preparation / tapeout
-ultrapure water / clean-air recirculation
-high-purity gas distribution / gas cabinets
-vacuum / process cooling / chilled water
-floor vibration / thermal stability / power quality
-ESD / ESA / EMI control
-exhaust / scrubbers / abatement / wastewater
-wire bonding / flip-chip / interposer / multidie packaging
-copper-clad laminates / drilling / plating / multilayer PCB
-through-hole / wave solder / SMT / paste / reflow
-AOI / ICT / X-ray / failure analysis / rework
-semiconductor equipment suppliers
-EDA / design rules / PDK-like interfaces
-foundries / fabless design interfaces
-```
+The remaining work is source deepening and later-generation extension rather than missing conceptual foundation.
 
-These are not peripheral production details. They determine what architectures can be manufactured reliably, revised quickly, tested economically, connected densely, traced after failure, kept inside a stable physical environment, and sold cheaply enough to matter.
+The experiment suite now targets **101 runnable experiments** spanning mechanical calculation, relays, memory media, cards, terminals, buses, semiconductor manufacturing, facilities, materials, process control, packaging, PCB electrochemistry, device aging, connectors, cooling, and high-speed board physics.
 
-## Runnable manufacturing experiments
-
-The manufacturing experiments are deliberately synthetic. They expose constraint structure without pretending to be historical fab data.
-
-First field set:
-
-- [`experiments/wafer-yield/`](experiments/wafer-yield/)
-- [`experiments/lithography-overlay/`](experiments/lithography-overlay/)
-- [`experiments/process-stack/`](experiments/process-stack/)
-- [`experiments/package-pin-budget/`](experiments/package-pin-budget/)
-- [`experiments/pcb-routing-density/`](experiments/pcb-routing-density/)
-- [`experiments/assembly-defects/`](experiments/assembly-defects/)
-
-Second field set:
-
-- [`experiments/dopant-signal/`](experiments/dopant-signal/)
-- [`experiments/wafer-scale/`](experiments/wafer-scale/)
-- [`experiments/mask-replication/`](experiments/mask-replication/)
-- [`experiments/mos-margin/`](experiments/mos-margin/)
-- [`experiments/firmware-iteration/`](experiments/firmware-iteration/)
-- [`experiments/tool-bottleneck/`](experiments/tool-bottleneck/)
-- [`experiments/smt-density/`](experiments/smt-density/)
-- [`experiments/foundry-boundary/`](experiments/foundry-boundary/)
-
-Third field set:
-
-- [`experiments/implant-dose/`](experiments/implant-dose/)
-- [`experiments/lithography-throughput/`](experiments/lithography-throughput/)
-- [`experiments/test-economics/`](experiments/test-economics/)
-- [`experiments/bond-thermal-budget/`](experiments/bond-thermal-budget/)
-- [`experiments/flip-chip-interconnect/`](experiments/flip-chip-interconnect/)
-- [`experiments/minienvironment-exposure/`](experiments/minienvironment-exposure/)
-- [`experiments/design-rule-interface/`](experiments/design-rule-interface/)
-
-Fourth field set:
-
-- [`experiments/process-control-loop/`](experiments/process-control-loop/)
-- [`experiments/screening-tradeoff/`](experiments/screening-tradeoff/)
-- [`experiments/electromigration-stress/`](experiments/electromigration-stress/)
-- [`experiments/thermal-cycle-fatigue/`](experiments/thermal-cycle-fatigue/)
-- [`experiments/inspection-tradeoff/`](experiments/inspection-tradeoff/)
-- [`experiments/fab-traceability/`](experiments/fab-traceability/)
-- [`experiments/layout-hierarchy/`](experiments/layout-hierarchy/)
-- [`experiments/multidie-yield/`](experiments/multidie-yield/)
-
-Fifth field set:
-
-- [`experiments/upw-contamination-budget/`](experiments/upw-contamination-budget/)
-- [`experiments/airflow-removal/`](experiments/airflow-removal/)
-- [`experiments/gas-delivery-purity/`](experiments/gas-delivery-purity/)
-- [`experiments/vacuum-gas-load/`](experiments/vacuum-gas-load/)
-- [`experiments/facility-stability-budget/`](experiments/facility-stability-budget/)
-- [`experiments/static-particle-attraction/`](experiments/static-particle-attraction/)
-- [`experiments/abatement-capacity/`](experiments/abatement-capacity/)
-
-## Next excavations
-
-The track can now go deeper into narrower factory subsystems rather than rebuilding the foundation:
-
-- UPW plant evolution: ion exchange, RO, UV oxidation, ultrafiltration, distribution materials, TOC/particle metrology, reclaim;
-- bulk/specialty-gas purification, mass-flow controllers, high-purity valves, electropolished tubing, orbital welding, leak detection;
-- vacuum-pump and residual-gas-analysis history, oil-free pumping, chamber seasoning and clean recovery;
-- HEPA→ULPA, airborne molecular contamination, chemical filtration, gowning, filter manufacture, cleanroom balancing;
-- PCW/chillers/cooling towers, power-quality and voltage-sag history, UPS/control-power architecture;
-- fab vibration criteria, waffle floors, isolated foundations, metrology-environment design;
-- ESD/EOS/ESA, ionizers, dissipative materials, field/event monitoring, reticle electrostatic protection;
-- scrubbers, burn/wet/plasma abatement, exhaust segregation, acid/solvent systems, wastewater neutralization and reclaim;
-- specific e-beam mask-writer / reticle-inspection tool histories;
-- stepper-to-scanner transitions, wavelengths, resists, focus/overlay metrology;
-- probe-card technologies, sockets, handlers, and tester programming languages;
-- ESD/EOS, TDDB, hot-carrier aging, corrosion, moisture, whiskers, and package cracking;
-- package substrates, ABF, BGA/PGA/QFP, underfill, TSV, interposers, hybrid bonding, and die-to-die interfaces;
-- semiconductor/PCB/facilities labor geography, OSAT, and the equipment/material supply chains below the fab.
-
-> **A billion-transistor processor is not only a triumph of logic design. It is evidence that an enormous manufacturing civilization learned to purify matter, grow crystals, reproduce patterns, measure distributions, manufacture an artificial environment, screen populations, track material, preserve data lineage, connect packages, and coordinate factories with extraordinary reliability.**
+> **A billion-transistor processor is not only a triumph of logic design. It is evidence that an enormous manufacturing civilization learned to purify matter, place atoms, reproduce patterns, manage defects, manufacture an artificial environment, preserve interfaces, and keep the whole object reliable long enough to become ordinary.**

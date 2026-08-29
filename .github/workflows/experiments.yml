@@ -185,6 +185,36 @@ jobs:
         run: python experiments/underfill-load-sharing/underfill_load_sharing.py
       - name: Thermal interface stack
         run: python experiments/thermal-interface-stack/thermal_interface_stack.py
+      - name: Dielectric breakdown stress
+        run: python experiments/dielectric-breakdown-stress/dielectric_breakdown_stress.py
+      - name: Hot-carrier duty
+        run: python experiments/hot-carrier-duty/hot_carrier_duty.py
+      - name: BTI duty cycle
+        run: python experiments/bti-duty-cycle/bti_duty_cycle.py
+      - name: Alpha soft error
+        run: python experiments/alpha-soft-error/alpha_soft_error.py
+      - name: Moisture reflow
+        run: python experiments/moisture-reflow/moisture_reflow.py
+      - name: Lead-free fatigue
+        run: python experiments/lead-free-fatigue/lead_free_fatigue.py
+      - name: Whisker bridge
+        run: python experiments/whisker-bridge/whisker_bridge.py
+      - name: CAF path
+        run: python experiments/caf-path/caf_path.py
+      - name: ECM dendrite
+        run: python experiments/ecm-dendrite/ecm_dendrite.py
+      - name: Contact fretting
+        run: python experiments/contact-fretting/contact_fretting.py
+      - name: LGA contact array
+        run: python experiments/lga-contact-array/lga_contact_array.py
+      - name: TIM aging
+        run: python experiments/tim-aging/tim_aging.py
+      - name: Heat-pipe capillary
+        run: python experiments/heatpipe-capillary/heatpipe_capillary.py
+      - name: Weave roughness
+        run: python experiments/weave-roughness/weave_roughness.py
+      - name: Via-stub resonance
+        run: python experiments/via-stub-resonance/via_stub_resonance.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
