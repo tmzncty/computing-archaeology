@@ -1,0 +1,41 @@
+name: speed-infrastructure-experiments
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  speed-infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check internal Markdown links
+        run: python tools/check_internal_links.py
+      - name: Compile all experiment sources
+        run: python -m compileall -q experiments tools
+      - name: EUV stochastic window
+        run: python experiments/euv-stochastic-window/euv_stochastic_window.py
+      - name: Backside power IR
+        run: python experiments/backside-power-ir/backside_power_ir.py
+      - name: CFET density
+        run: python experiments/cfet-density/cfet_density.py
+      - name: HBM4 interface
+        run: python experiments/hbm4-interface/hbm4_interface.py
+      - name: Hybrid bond KGD
+        run: python experiments/hybrid-bond-kgd/hybrid_bond_kgd.py
+      - name: CPO reach
+        run: python experiments/cpo-reach/cpo_reach.py
+      - name: CEI rate budget
+        run: python experiments/cei-rate-budget/cei_rate_budget.py
+      - name: HVDC rack current
+        run: python experiments/hvdc-rack-current/hvdc_rack_current.py
+      - name: Coolant chemistry window
+        run: python experiments/coolant-chemistry-window/coolant_chemistry_window.py
+      - name: Collective offload
+        run: python experiments/collective-offload/collective_offload.py

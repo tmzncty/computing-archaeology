@@ -102,7 +102,7 @@ It does mean that the conceptual gaps repeatedly identified in this research thr
 
 ## Completed later-generation extension: post-scaling integration
 
-The first later-generation extension is now covered in [`POST-SCALING.md`](POST-SCALING.md):
+The first later-generation extension is covered in [`POST-SCALING.md`](POST-SCALING.md):
 
 - [x] FinFET process-integration archaeology;
 - [x] gate-all-around nanosheet scaling;
@@ -117,7 +117,22 @@ The first later-generation extension is now covered in [`POST-SCALING.md`](POST-
 - [x] 48 V busbar / high-current AI-rack power distribution;
 - [x] cold plates / manifolds / quick disconnects in liquid-cooled servers.
 
-These twelve topics have long-form articles and twelve additional runnable synthetic experiments. The repository therefore contains **113 runnable experiments** across the original suite and the post-scaling extension.
+## Completed later-generation extension: speed infrastructure
+
+The second later-generation extension is covered in [`SPEED.md`](SPEED.md):
+
+- [x] EUV stochastic-defect / dose / pellicle throughput tradeoffs;
+- [x] backside power-delivery networks;
+- [x] forksheet / CFET density scaling;
+- [x] HBM4-class 2048-bit memory interfaces and base-die pressure;
+- [x] hybrid-bond known-good-die / inspection economics;
+- [x] co-packaged optics and external laser source infrastructure;
+- [x] CEI 224G -> 448G channel-system scaling;
+- [x] 800 VDC / megawatt-class rack distribution;
+- [x] CDU / coolant chemistry as compute-availability infrastructure;
+- [x] in-network collective computation / SHARP-style offload.
+
+The repository now contains **123 runnable synthetic constraint experiments** across the original suite, post-scaling extension, and speed-infrastructure extension.
 
 ## What remains after these completion passes
 
@@ -136,18 +151,19 @@ The remaining work is no longer a missing conceptual spine. It is **archival and
 - supplier quality, incoming inspection, field service, maintenance and spare-parts logistics;
 - women and migrant labor in assembly, test, packaging, cleanroom and board factories;
 - equipment-vendor/customer co-development and process-transfer teams;
-- EUV field service, HBM/package yield, retimer validation, rack-power commissioning, and liquid-cooling maintenance labor.
+- EUV field service, HBM/package yield, retimer/CPO validation, rack-power commissioning, coolant-chemistry monitoring, and liquid-cooling maintenance labor.
 
 ### Newer extensions that remain open
 
-- EUV mask/pellicle/resist chemistry and stochastic-defect deep dive;
-- GAA process modules such as inner spacer, sheet release, work-function fill, backside power delivery, and forksheet/CFET research;
-- HBM4-class base-die and memory-stack evolution;
-- hybrid-bond defect inspection, repair economics, and die-to-wafer known-good-die flows;
-- co-packaged optics and external laser source infrastructure;
-- 224G/448G electrical channels, cable assemblies, optics and equalization;
-- megawatt-scale rack power conversion and higher-voltage DC distribution;
-- CDU/facility-water integration, coolant chemistry, leak detection and fleet maintenance;
+- EUV stochastic modeling at higher resolution, mask-defect inspection, actinic metrology, and next-generation pellicle materials;
+- GAA inner-spacer / sheet-release / work-function-fill process archaeology, plus CFET thermal/contact integration;
+- HBM4E/HBM5-class stack evolution, base-die logic, repair, redundancy, and package-yield economics;
+- hybrid-bond defect inspection, repair/rework limits, and die-to-wafer automation history;
+- co-packaged optics deployment history, optical-engine serviceability, and co-packaged laser/ELSFP fleet operations;
+- 224G/448G cable assemblies, connector/material evolution, compliance instrumentation, and eventual 800G-class lane research;
+- 800 VDC protection, conversion stages, fault management, commissioning, and facility integration;
+- CDU fleet control, facility-water quality, corrosion monitoring, leak detection, and coolant lifecycle management;
+- cross-vendor in-network collective history and AI-fabric scheduling/control-plane archaeology;
 - contemporary AI infrastructure supply-chain geography and capacity bottlenecks.
 
 ## Completion criterion
@@ -160,4 +176,4 @@ The manufacturing track is considered **first-pass structurally complete** when:
 - all Python experiment entry points compile;
 - source-type caveats and invisible labor are preserved.
 
-> **The goal is not to claim that manufacturing history is finished. The goal is to make sure nobody can look at a CPU, GPU, HBM stack, package, rack busbar, or coolant manifold and imagine that “the chip industry” was only transistor design.**
+> **The goal is not to claim that manufacturing history is finished. The goal is to make sure nobody can look at a CPU, GPU, HBM stack, optical engine, AI fabric, rack busbar, or coolant manifold and imagine that “performance” came from transistor design alone.**
