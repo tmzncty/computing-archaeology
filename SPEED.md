@@ -67,7 +67,7 @@ larger GPU collectives
 - `experiments/backside-power-ir/backside_power_ir.py`
 - `experiments/cfet-density/cfet_density.py`
 - `experiments/hbm4-interface/hbm4_interface.py`
-- `experiments/hybrid-bond-kge/hybrid_bond_kge.py`
+- `experiments/hybrid-bond-kgd/hybrid_bond_kgd.py`
 - `experiments/cpo-reach/cpo_reach.py`
 - `experiments/cei-rate-budget/cei_rate_budget.py`
 - `experiments/hvdc-rack-current/hvdc_rack_current.py`
