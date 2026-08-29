@@ -167,6 +167,24 @@ jobs:
         run: python experiments/surface-finish-tradeoff/surface_finish_tradeoff.py
       - name: Microvia fill
         run: python experiments/microvia-fill/microvia_fill.py
+      - name: Tungsten fill
+        run: python experiments/tungsten-fill/tungsten_fill.py
+      - name: Barrier cross-section
+        run: python experiments/barrier-cross-section/barrier_cross_section.py
+      - name: Dielectric divergence
+        run: python experiments/dielectric-divergence/dielectric_divergence.py
+      - name: Backside thermal interface
+        run: python experiments/backside-thermal-interface/backside_thermal_interface.py
+      - name: Vacuum train
+        run: python experiments/vacuum-train/vacuum_train.py
+      - name: Microvia interface prep
+        run: python experiments/microvia-interface-prep/microvia_interface_prep.py
+      - name: Solder paste window
+        run: python experiments/solder-paste-window/solder_paste_window.py
+      - name: Underfill load sharing
+        run: python experiments/underfill-load-sharing/underfill_load_sharing.py
+      - name: Thermal interface stack
+        run: python experiments/thermal-interface-stack/thermal_interface_stack.py
       - name: Text fossils
         run: python experiments/text-fossils/text_fossils.py
       - name: Endianness
