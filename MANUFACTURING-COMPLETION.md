@@ -100,13 +100,32 @@ It does mean that the conceptual gaps repeatedly identified in this research thr
   - Article: [`docs/pcb/why-via-stubs-had-to-be-drilled-away.md`](docs/pcb/why-via-stubs-had-to-be-drilled-away.md)
   - Experiment: [`experiments/via-stub-resonance/`](experiments/via-stub-resonance/)
 
-## What remains after this completion pass
+## Completed later-generation extension: post-scaling integration
 
-The remaining work is no longer a missing conceptual spine. It is **archival and specialist deepening**:
+The first later-generation extension is now covered in [`POST-SCALING.md`](POST-SCALING.md):
+
+- [x] FinFET process-integration archaeology;
+- [x] gate-all-around nanosheet scaling;
+- [x] EUV source / mirror / vacuum infrastructure;
+- [x] High-NA EUV as a new optical/mechanical scaling step;
+- [x] HBM / TSV stacked-memory architecture;
+- [x] silicon interposer / CoWoS-style package-scale wiring;
+- [x] hybrid bonding / fine-pitch 3D integration;
+- [x] modern chiplet die-to-die standardization through UCIe;
+- [x] PCIe 6 PAM4 / FEC / FLIT reliability machinery;
+- [x] active retimers as channel infrastructure;
+- [x] 48 V busbar / high-current AI-rack power distribution;
+- [x] cold plates / manifolds / quick disconnects in liquid-cooled servers.
+
+These twelve topics have long-form articles and twelve additional runnable synthetic experiments. The repository therefore contains **113 runnable experiments** across the original suite and the post-scaling extension.
+
+## What remains after these completion passes
+
+The remaining work is no longer a missing conceptual spine. It is **archival and specialist deepening**, plus genuinely newer extensions.
 
 ### Primary-source deepening
 
-- recover more original factory manuals, process specifications, vendor data books, and qualification procedures;
+- recover more original factory manuals, process specifications, vendor data books, qualification procedures, conference proceedings, and standard revisions;
 - replace later institutional summaries with period documents where accessible;
 - preserve exact revision dates for standards and distinguish first appearance from later mature practice;
 - add more cross-company evidence before making priority claims.
@@ -116,30 +135,29 @@ The remaining work is no longer a missing conceptual spine. It is **archival and
 - semiconductor / PCB / OSAT labor geography;
 - supplier quality, incoming inspection, field service, maintenance and spare-parts logistics;
 - women and migrant labor in assembly, test, packaging, cleanroom and board factories;
-- equipment-vendor/customer co-development and process-transfer teams.
+- equipment-vendor/customer co-development and process-transfer teams;
+- EUV field service, HBM/package yield, retimer validation, rack-power commissioning, and liquid-cooling maintenance labor.
 
-### Later-generation extensions
+### Newer extensions that remain open
 
-These are useful future expansions, not blockers for the current historical mainline:
-
-- FinFET / GAA process-integration archaeology;
-- EUV source / mask / pellicle / resist infrastructure;
-- hybrid bonding and modern chiplet die-to-die standards;
-- HBM stack / TSV / advanced package thermal-mechanical systems;
-- liquid cooling / cold plates / quick disconnects in contemporary datacenters;
-- 224G+ channel materials, connectors, cable assemblies and retimers.
+- EUV mask/pellicle/resist chemistry and stochastic-defect deep dive;
+- GAA process modules such as inner spacer, sheet release, work-function fill, backside power delivery, and forksheet/CFET research;
+- HBM4-class base-die and memory-stack evolution;
+- hybrid-bond defect inspection, repair economics, and die-to-wafer known-good-die flows;
+- co-packaged optics and external laser source infrastructure;
+- 224G/448G electrical channels, cable assemblies, optics and equalization;
+- megawatt-scale rack power conversion and higher-voltage DC distribution;
+- CDU/facility-water integration, coolant chemistry, leak detection and fleet maintenance;
+- contemporary AI infrastructure supply-chain geography and capacity bottlenecks.
 
 ## Completion criterion
 
 The manufacturing track is considered **first-pass structurally complete** when:
 
-- every topic above has a long-form article;
-- every topic above has a runnable synthetic constraint experiment where appropriate;
+- each tracked topic has a long-form article;
+- each tracked topic has a runnable synthetic constraint experiment where appropriate;
 - internal links pass;
 - all Python experiment entry points compile;
-- the full smoke-test workflow runs all experiments successfully;
 - source-type caveats and invisible labor are preserved.
 
-This tranche targets **101 runnable experiments** in total.
-
-> **The goal is not to claim that manufacturing history is finished. The goal is to make sure nobody can look at a CPU again and imagine that “the chip industry” was only transistor design.**
+> **The goal is not to claim that manufacturing history is finished. The goal is to make sure nobody can look at a CPU, GPU, HBM stack, package, rack busbar, or coolant manifold and imagine that “the chip industry” was only transistor design.**
