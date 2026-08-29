@@ -1,0 +1,45 @@
+name: post-scaling-experiments
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  post-scaling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check internal Markdown links
+        run: python tools/check_internal_links.py
+      - name: Compile all experiment sources
+        run: python -m compileall -q experiments tools
+      - name: FinFET gate control
+        run: python experiments/finfet-gate-control/finfet_gate_control.py
+      - name: Nanosheet width
+        run: python experiments/nanosheet-width/nanosheet_width.py
+      - name: EUV reflection chain
+        run: python experiments/euv-reflection-chain/euv_reflection_chain.py
+      - name: High-NA field
+        run: python experiments/highna-field/highna_field.py
+      - name: HBM bandwidth density
+        run: python experiments/hbm-bandwidth-density/hbm_bandwidth_density.py
+      - name: Interposer reach
+        run: python experiments/interposer-reach/interposer_reach.py
+      - name: Hybrid bond pitch
+        run: python experiments/hybrid-bond-pitch/hybrid_bond_pitch.py
+      - name: Chiplet partition
+        run: python experiments/chiplet-partition/chiplet_partition.py
+      - name: PAM4 margin
+        run: python experiments/pam4-margin/pam4_margin.py
+      - name: Retimer budget
+        run: python experiments/retimer-budget/retimer_budget.py
+      - name: Rack power
+        run: python experiments/rack-power/rack_power.py
+      - name: Cold-plate loop
+        run: python experiments/coldplate-loop/coldplate_loop.py
