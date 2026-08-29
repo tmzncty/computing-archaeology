@@ -28,7 +28,7 @@ jobs:
       - name: HBM4 interface
         run: python experiments/hbm4-interface/hbm4_interface.py
       - name: Hybrid bond KGD
-        run: python experiments/hybrid-bond-kge/hybrid_bond_kge.py
+        run: python experiments/hybrid-bond-kgd/hybrid_bond_kgd.py
       - name: CPO reach
         run: python experiments/cpo-reach/cpo_reach.py
       - name: CEI rate budget
