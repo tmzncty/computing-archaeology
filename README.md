@@ -167,8 +167,9 @@ See [`ACKNOWLEDGEMENTS.md`](ACKNOWLEDGEMENTS.md) and the field-set acknowledgeme
 
 ## Related repositories
 
-This repository explains **why a historical design made sense**. Hands-on reconstruction or interface emulation may live in companion projects instead:
+This repository explains **why a historical design made sense**. Hands-on reconstruction, interface emulation, or cross-mechanism philosophical analysis may live in companion projects instead:
 
+- [`technical-retention`](https://github.com/tmzncty/technical-retention) — compare how states persist across mechanisms and connect exact storage engineering with philosophy and media theory;
 - `mechanical-computing-playground` — build or simulate mechanisms;
 - `obsolete-interface-museum` — experience obsolete interaction styles.
 
