@@ -26,7 +26,7 @@ The CHM entry is a curated retrospective useful for the 1103/MK4096/MK4116 seque
 
 ### Synchronous interface evidence
 
-- Micron Technology, *MT48LC16M16A2 256Mb SDRAM* datasheet: https://media-www.micron.com/-/media/client/global/documents/products/data-sheet/dram/sdram/256mb_sdram.pdf
+- Micron Technology, *MT48LC16M16A2 256Mb SDRAM* datasheet: https://www.micron.com/products/memory/dram-components/sdram/part-catalog/part-detail/mt48lc16m16a2b4-6a-g
 - JEDEC, DDR SDRAM standards landing/catalog: https://www.jedec.org/standards-documents/focus/memory-ssd-jc-42
 
 Use period/vendor datasheets to establish `ACTIVE`, `READ`, `WRITE`, `PRECHARGE`, refresh, bank and burst behavior. Do not describe SDRAM as eliminating row-cycle latency; it coordinates commands with a clock.
