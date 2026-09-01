@@ -338,6 +338,16 @@ The project should continue to deepen its use of scholarship from **IEEE Annals 
 
 Preservation researchers deserve equal visibility. The work of scanning, cataloguing, identifying revisions, maintaining mirrors, transcribing old reports, restoring machines, recording oral histories, and documenting provenance is often what makes later historical argument possible.
 
+## Validation-tool dependencies
+
+Repository validation uses these pinned, MIT-licensed Python packages:
+
+- [`markdown-it-py` 4.2.0](https://github.com/executablebooks/markdown-it-py) parses CommonMark and GFM tables for the internal-link checker;
+- [`mdit-py-plugins` 0.6.1](https://github.com/executablebooks/mdit-py-plugins) supplies GFM-compatible footnote parsing;
+- [`mdurl` 0.1.2](https://github.com/executablebooks/mdurl) is the URL-normalization dependency of `markdown-it-py`.
+
+Their exact distribution hashes are recorded in [`tools/requirements.txt`](tools/requirements.txt). They are tooling dependencies, not historical sources.
+
 ## AI assistance
 
 Initial repository architecture, research framing, source triage, experiments, and draft prose were produced with assistance from **ChatGPT (GPT-5.6 Sol), OpenAI**, at the direction of the repository owner.

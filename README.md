@@ -107,6 +107,18 @@ All experiment parameters are synthetic unless explicitly tied to historical evi
 
 Implementations live under [`experiments/`](experiments/). CI checks internal Markdown links, compiles experiment sources, and runs the experiment suites.
 
+To run the same link validation locally, install its exact, hash-pinned parser
+dependencies before invoking the checker:
+
+```bash
+python -m pip install --require-hashes -r tools/requirements.txt
+python tools/check_internal_links.py
+```
+
+The checker parses rendered CommonMark plus GFM tables, footnotes, and extended
+autolinks; it does not treat Markdown-looking text inside code, raw HTML, or a
+bare URL as a repository link.
+
 ## Six recurring patterns
 
 ### 1. The physical world leaks upward
