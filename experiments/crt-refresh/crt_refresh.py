@@ -38,19 +38,22 @@ def simulate(
 ) -> Result:
     memory = [Cell(i & 1) for i in range(cells)]
     dt = 1.0 / refreshes_per_second
-    scan_budget = scan_capacity_per_second / refreshes_per_second
     cursor = 0
     lost = set()
     refresh_ops = 0
     steps = int(seconds * refreshes_per_second)
 
-    for _ in range(steps):
+    for step in range(steps):
         for index, cell in enumerate(memory):
             cell.signal -= decay_per_second * dt
             if cell.signal < threshold:
                 lost.add(index)
 
-        visits = int(scan_budget)
+        # Derive a cumulative target so fractional per-tick capacity is retained.
+        target_refresh_ops = int(
+            (step + 1) * scan_capacity_per_second / refreshes_per_second
+        )
+        visits = target_refresh_ops - refresh_ops
         for _ in range(visits):
             memory[cursor].signal = 1.0
             refresh_ops += 1
