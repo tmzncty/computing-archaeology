@@ -124,5 +124,5 @@ The defensible continuity is narrower: **cell area, weak stored signal, shared s
 
 [^chm-dram]: Computer History Museum, “1970: MOS Dynamic RAM Competes with Magnetic Core Memory on Price,” *The Silicon Engine*, https://www.computerhistory.org/siliconengine/mos-dynamic-ram-competes-with-magnetic-core-memory-on-price/
 [^dennard]: Robert H. Dennard, “Field-effect transistor memory,” US Patent 3,387,286, filed 14 July 1967, issued 4 June 1968, https://patents.google.com/patent/US3387286A/en
-[^mk4116]: Mostek, *MK 4116(N/P)-3 16,384-Bit Dynamic Random Access Memory*, in *Mostek 1978 Memory Data Book*, Bitsavers, http://bitsavers.org/components/mostek/_dataBooks/1978_Mostek_Memory_Data_Book.pdf
-[^micron-sdram]: Micron Technology, *MT48LC16M16A2 256Mb: x4, x8, x16 SDRAM* data sheet, command, burst and refresh descriptions, https://www.micron.com/-/media/client/global/documents/products/data-sheet/dram/sdram/256mb_sdram.pdf
+[^mk4116]: Mostek, *MK 4116(N/P)-3 16,384-Bit Dynamic Random Access Memory*, in *Mostek Memory Products* (1977), Bitsavers, https://bitsavers.org/components/mostek/_dataBooks/1977_Mostek_Memory_Products.pdf
+[^micron-sdram]: Micron Technology, *MT48LC16M16A2 256Mb: x4, x8, x16 SDRAM* data sheet, command, burst and refresh descriptions, https://media-www.micron.com/-/media/client/global/documents/products/data-sheet/dram/sdram/256mb_sdram.pdf
