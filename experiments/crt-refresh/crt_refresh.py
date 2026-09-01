@@ -9,6 +9,7 @@ before their signal falls below a readable threshold.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import Iterable
 
 
@@ -42,6 +43,11 @@ def simulate(
     lost = set()
     refresh_ops = 0
     steps = int(seconds * refreshes_per_second)
+    # Treat the caller-visible decimal values as exact model parameters.  The
+    # cumulative target is then floored without binary-float boundary errors.
+    scan_capacity_per_tick = Fraction(str(scan_capacity_per_second)) / Fraction(
+        str(refreshes_per_second)
+    )
 
     for step in range(steps):
         for index, cell in enumerate(memory):
@@ -50,9 +56,8 @@ def simulate(
                 lost.add(index)
 
         # Derive a cumulative target so fractional per-tick capacity is retained.
-        target_refresh_ops = int(
-            (step + 1) * scan_capacity_per_second / refreshes_per_second
-        )
+        target = (step + 1) * scan_capacity_per_tick
+        target_refresh_ops = target.numerator // target.denominator
         visits = target_refresh_ops - refresh_ops
         for _ in range(visits):
             memory[cursor].signal = 1.0
