@@ -73,7 +73,7 @@ See [`docs/methodology/constraint-first-history.md`](docs/methodology/constraint
 
 ## Runnable archaeology
 
-The repository currently contains **123 runnable synthetic constraint experiments**.
+The repository currently contains **125 runnable synthetic constraint experiments**.
 
 They are intentionally small and usually dependency-free. The point is not to cosmetically imitate old machinery; it is to make a historical constraint visible:
 
@@ -140,7 +140,7 @@ The repository is now exceptionally deep in semiconductor manufacturing and mode
 The highest-priority missing first treatments are summarized in [`AUDIT.md`](AUDIT.md):
 
 1. **etch / plasma / RIE, epitaxy, anneal and process metrology**;
-2. **SRAM / DRAM / ROM / EEPROM / Flash / cache**;
+2. **deeper primary-source histories of SRAM, FPM/EDO, EEPROM and Flash controllers**;
 3. **ordinary computer power supplies, VRMs, passives and clock distribution**;
 4. **mainframe channels, spooling, RS-232/UART/modems and disk geometry**;
 5. **the S-100 -> IBM PC/ISA/BIOS compatibility stack**;

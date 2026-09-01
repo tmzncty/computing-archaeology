@@ -132,7 +132,7 @@ The second later-generation extension is covered in [`SPEED.md`](SPEED.md):
 - [x] CDU / coolant chemistry as compute-availability infrastructure;
 - [x] in-network collective computation / SHARP-style offload.
 
-The repository now contains **123 runnable synthetic constraint experiments** across the original suite, post-scaling extension, and speed-infrastructure extension.
+The repository now contains **125 runnable synthetic constraint experiments** across the original suite, post-scaling extension, and speed-infrastructure extension.
 
 ## What remains after these completion passes
 

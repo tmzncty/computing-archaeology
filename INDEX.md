@@ -25,7 +25,7 @@ Start in [`docs/mechanical/`](docs/mechanical/).
 
 Start in [`docs/electromechanical/`](docs/electromechanical/), [`docs/electronic/`](docs/electronic/), and [`case-studies/eniac/`](case-studies/eniac/).
 
-### Memory and storage before semiconductor RAM
+### Memory and storage: from physical circulation to semiconductor hierarchy
 
 - acoustic delay lines;
 - Williams tubes;
@@ -140,7 +140,7 @@ Coverage includes wire bonding, flip-chip, multidie packaging, hybrid bonding, m
 
 ## Experiments
 
-The repository currently contains **123 runnable synthetic constraint experiments** across three CI suites.
+The repository currently contains **125 runnable synthetic constraint experiments** across three CI suites.
 
 Do not treat experiment values as historical measurements unless a specific experiment explicitly says otherwise. Their purpose is to expose mechanism and tradeoff structure.
 
@@ -166,7 +166,7 @@ The repository is now exceptionally deep in manufacturing, but uneven across the
 The highest-priority missing bridges are:
 
 1. semiconductor etch / epitaxy / anneal / metrology;
-2. SRAM / DRAM / ROM / Flash / cache;
+2. deeper period sourcing for SRAM cell design, FPM/EDO transitions and Flash controller history;
 3. ordinary computer power supplies, VRMs and timing/clock distribution;
 4. mainframe I/O, spooling, serial interfaces and disk geometry;
 5. the commodity-PC compatibility stack;

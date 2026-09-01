@@ -2,7 +2,7 @@
 
 This is a structural audit of `computing-archaeology` after the manufacturing, materials, post-scaling, and speed-infrastructure expansions.
 
-The repository now has **123 runnable constraint experiments** and unusually deep coverage of manufacturing. The main risk is no longer lack of material everywhere; it is **uneven depth**: some lower manufacturing layers have many articles while several central computing lineages still have no first-pass treatment.
+The repository now has **125 runnable constraint experiments** and unusually deep coverage of manufacturing. The main risk is no longer lack of material everywhere; it is **uneven depth**: some lower manufacturing layers have many articles while several central computing lineages still have no first-pass treatment.
 
 This file separates three things that should not be confused:
 
@@ -22,7 +22,7 @@ The root README still presents the repository largely as the early field sets. I
 - `POST-SCALING.md`
 - `SPEED.md`
 
-It also describes only the early experiment suite even though the repository now contains 123 runnable experiments.
+It also describes only the early experiment suite even though the repository now contains 125 runnable experiments.
 
 **Action:** keep the README concise and make it point to a current index rather than trying to enumerate every article and experiment forever.
 
@@ -74,19 +74,17 @@ Closely related missing process modules:
 
 The repository goes very deep on delay lines, Williams tubes, drums, magnetic core, tape and disk, then later reaches HBM/HBM4. The bridge in the middle is largely missing.
 
-Missing first treatments:
+**First treatment completed:**
 
-- SRAM cell tradeoffs;
-- DRAM and the one-transistor/one-capacitor cell;
-- destructive read / sense amplification / refresh in semiconductor DRAM;
-- row/column multiplexing and why DRAM packages expose addresses the way they do;
-- asynchronous DRAM -> FPM/EDO -> SDRAM/DDR as increasing coordination with the memory clock;
-- ROM / mask ROM / PROM / EPROM / EEPROM;
-- floating-gate Flash, erase blocks and wear;
-- cache memory and the SRAM/DRAM hierarchy;
-- ECC memory as statistical reliability infrastructure.
+- [SRAM/DRAM cell tradeoffs, 1T1C sensing/restoration/refresh, address multiplexing, FPM/EDO/SDRAM/DDR and cache hierarchy](docs/memory/why-semiconductor-ram-became-a-hierarchy.md);
+- [mask ROM/PROM/EPROM/EEPROM -> Flash, erase blocks, remapping and wear](docs/memory/why-read-only-memory-kept-changing.md);
+- [ECC, SECDED boundaries, scrubbing, layout and telemetry as statistical reliability infrastructure](docs/memory/why-ecc-became-memory-infrastructure.md);
+- runnable [DRAM array](experiments/dram-array/) and [Flash erase](experiments/flash-erase/) constraint models;
+- [source map](docs/references/semiconductor-memory-field-set.md) separating period evidence from reconstruction.
 
-**Why this is P0:** without it, the repository can explain magnetic core and HBM but not the memory technology that connected them and dominated ordinary computers for decades.
+**Still deepen:** early SRAM cell-design primary literature; a tighter vendor-manual chronology for FPM and EDO; EEPROM's first commercial implementations; NOR/NAND product and controller histories; measured cache-hierarchy case studies; Chipkill/on-die ECC deployment history.
+
+**Status:** the conceptual spine from core to ordinary semiconductor memory and onward to HBM now has a usable first treatment. Remaining work is source and case-study depth rather than a missing bridge.
 
 ### P0-C — Power delivery before the AI rack is almost absent
 
