@@ -9,7 +9,6 @@ incrementing a counter.
 from __future__ import annotations
 
 import argparse
-import math
 from dataclasses import dataclass
 
 
@@ -32,13 +31,22 @@ class RadixResult:
 
 
 def digits_required(max_value: int, radix: int) -> int:
+    """Return the positions needed to represent every value through max_value.
+
+    Keep the calculation in integer arithmetic: logarithms can round to either
+    side of an exact radix power and therefore add or remove a digit precisely
+    at the boundary this function needs to classify.
+    """
     if max_value < 0:
         raise ValueError("max_value must be non-negative")
     if radix < 2:
         raise ValueError("radix must be at least 2")
-    if max_value == 0:
-        return 1
-    return math.ceil(math.log(max_value + 1, radix))
+
+    digits = 1
+    while max_value >= radix:
+        max_value //= radix
+        digits += 1
+    return digits
 
 
 def carry_chain_for_increment(value: int, radix: int) -> int:
