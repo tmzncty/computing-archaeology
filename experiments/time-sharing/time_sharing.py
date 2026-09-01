@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
-"""Toy model for interactive think time and shared CPU demand.
+"""Toy model for fixed interactive request intervals and shared CPU demand.
 
-The model does not reproduce CTSS scheduling. It illustrates why many users who
-alternate long human think times with short CPU bursts can share one processor
-while each still perceives relatively quick service at modest load.
+The model does not reproduce CTSS scheduling. It illustrates why request streams
+separated by long pauses and requiring short CPU bursts can share one processor
+while users still perceive relatively quick service at modest load.
 """
 
 from __future__ import annotations
 
 import argparse
 import heapq
+import math
 from dataclasses import dataclass
 
 
@@ -30,28 +31,44 @@ class Metrics:
     makespan: float
 
 
-def reserved_utilization(cpu_burst: float, think_time: float) -> float:
-    return cpu_burst / (cpu_burst + think_time)
+def _require_positive_finite(name: str, value: float) -> None:
+    """Reject values that cannot advance this discrete-event simulation."""
+    if not math.isfinite(value) or value <= 0:
+        raise ValueError(f"{name} must be a positive finite number")
 
 
-def offered_load(users: int, cpu_burst: float, think_time: float) -> float:
-    return users * reserved_utilization(cpu_burst, think_time)
+def per_user_offered_load(cpu_burst: float, request_interval: float) -> float:
+    """Return one request stream's demand per fixed request-start interval."""
+    _require_positive_finite("cpu_burst", cpu_burst)
+    _require_positive_finite("request_interval", request_interval)
+    return cpu_burst / request_interval
 
 
-def build_requests(users: int, rounds: int, think_time: float, cpu_burst: float) -> list[Request]:
+def offered_load(users: int, cpu_burst: float, request_interval: float) -> float:
+    """Return aggregate demand for the arrivals produced by build_requests()."""
+    return users * per_user_offered_load(cpu_burst, request_interval)
+
+
+def build_requests(
+    users: int, rounds: int, request_interval: float, cpu_burst: float
+) -> list[Request]:
     """Create deterministic staggered interactive requests.
 
-    Each user emits a request once per think-time interval. Initial arrivals are
-    staggered evenly so all users do not synchronize at t=0.
+    Each user emits a request once per fixed request-start interval. Initial
+    arrivals are staggered evenly so all users do not synchronize at t=0. CPU
+    service and queueing do not move later arrivals.
     """
+    _require_positive_finite("request_interval", request_interval)
+    _require_positive_finite("cpu_burst", cpu_burst)
+
     requests: list[Request] = []
-    spacing = think_time / users if users else 0.0
+    spacing = request_interval / users if users else 0.0
     for user in range(users):
         first = user * spacing
         for sequence in range(rounds):
             requests.append(
                 Request(
-                    arrival=first + sequence * think_time,
+                    arrival=first + sequence * request_interval,
                     user=user,
                     sequence=sequence,
                     cpu=cpu_burst,
@@ -61,11 +78,12 @@ def build_requests(users: int, rounds: int, think_time: float, cpu_burst: float)
     return requests
 
 
-def simulate_round_robin(
-    requests: list[Request], quantum: float
-) -> Metrics:
-    if quantum <= 0:
-        raise ValueError("quantum must be positive")
+def simulate_round_robin(requests: list[Request], quantum: float) -> Metrics:
+    _require_positive_finite("quantum", quantum)
+    for request in requests:
+        if not math.isfinite(request.arrival) or request.arrival < 0:
+            raise ValueError("request arrival must be a non-negative finite number")
+        _require_positive_finite("request cpu", request.cpu)
     if not requests:
         return Metrics(0, 0.0, 0.0, 0.0, 0.0)
 
@@ -120,33 +138,47 @@ def simulate_round_robin(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Explore human think time, shared CPU load, and response time."
+        description="Explore fixed request arrivals, shared CPU load, and response time."
     )
     parser.add_argument("--users", type=int, default=20)
     parser.add_argument("--rounds", type=int, default=20)
-    parser.add_argument("--think", type=float, default=10.0, help="seconds between requests")
-    parser.add_argument("--cpu", type=float, default=0.05, help="CPU seconds per request")
-    parser.add_argument("--quantum", type=float, default=0.02, help="round-robin quantum seconds")
+    parser.add_argument(
+        "--think",
+        dest="request_interval",
+        metavar="SECONDS",
+        type=float,
+        default=10.0,
+        help="fixed seconds between request starts (open-loop)",
+    )
+    parser.add_argument(
+        "--cpu", type=float, default=0.05, help="CPU seconds per request"
+    )
+    parser.add_argument(
+        "--quantum", type=float, default=0.02, help="round-robin quantum seconds"
+    )
     args = parser.parse_args()
 
     if args.users < 1 or args.rounds < 1:
         parser.error("--users and --rounds must be positive")
-    if args.think <= 0 or args.cpu <= 0 or args.quantum <= 0:
-        parser.error("--think, --cpu, and --quantum must be positive")
+    if any(
+        not math.isfinite(value) or value <= 0
+        for value in (args.request_interval, args.cpu, args.quantum)
+    ):
+        parser.error("--think, --cpu, and --quantum must be positive finite numbers")
 
-    single = reserved_utilization(args.cpu, args.think)
-    load = offered_load(args.users, args.cpu, args.think)
-    requests = build_requests(args.users, args.rounds, args.think, args.cpu)
+    single = per_user_offered_load(args.cpu, args.request_interval)
+    load = offered_load(args.users, args.cpu, args.request_interval)
+    requests = build_requests(args.users, args.rounds, args.request_interval, args.cpu)
     metrics = simulate_round_robin(requests, args.quantum)
 
     print("Interactive sharing toy model")
     print(f"users:                 {args.users}")
     print(f"requests/user:         {args.rounds}")
-    print(f"human think interval:  {args.think:.3f} s")
+    print(f"request-start interval: {args.request_interval:.3f} s")
     print(f"CPU burst/request:     {args.cpu:.3f} s")
     print(f"round-robin quantum:   {args.quantum:.3f} s")
     print()
-    print(f"one reserved user's CPU use: {single * 100:7.3f}%")
+    print(f"one user's offered load:      {single * 100:7.3f}% of one CPU")
     print(f"aggregate offered load:      {load * 100:7.3f}% of one CPU")
     print()
     print("simulated shared CPU")
@@ -158,11 +190,15 @@ def main() -> None:
     print()
 
     if load < 0.5:
-        print("Interpretation: substantial spare CPU capacity remains in this toy workload.")
+        print(
+            "Interpretation: substantial spare CPU capacity remains in this toy workload."
+        )
     elif load < 1.0:
         print("Interpretation: the toy workload is busy but below nominal saturation.")
     else:
-        print("Interpretation: offered demand reaches/exceeds one CPU; queueing pressure is expected.")
+        print(
+            "Interpretation: offered demand reaches/exceeds one CPU; queueing pressure is expected."
+        )
 
 
 if __name__ == "__main__":
