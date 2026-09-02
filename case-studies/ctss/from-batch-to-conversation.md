@@ -378,24 +378,20 @@ The operating system starts to look less like a loader and more like an institut
 
 ## Reconstruction: why slow humans create multiplexing opportunity
 
-The companion experiment [`../../experiments/time-sharing/`](../../experiments/time-sharing/) models a deliberately simple situation.
-
-Each user alternates between:
+The companion experiment [`../../experiments/time-sharing/`](../../experiments/time-sharing/) models a deliberately simple situation. To approximate intermittent interaction, each user's request stream emits requests at a fixed start-to-start interval, and each request demands a short CPU burst:
 
 ```text
-human think time
-and
-short CPU demand
+fixed request-start interval -> next request arrival
+each request                -> short CPU burst
 ```
 
 The script compares:
 
-- reserving a machine for one interactive user;
+- the offered CPU load from one user's request stream;
 - aggregating many users on one CPU;
-- the offered CPU load created by their short bursts;
 - simple response-time behavior as the user population grows.
 
-It does not reproduce CTSS scheduling.
+This is an open-loop model: a scheduled request does not wait for the previous response before arriving. It does not reproduce CTSS scheduling or a closed-loop cycle in which a person pauses only after seeing a response.
 
 Its purpose is to expose the economic intuition:
 
