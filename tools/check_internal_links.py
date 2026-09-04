@@ -575,14 +575,17 @@ def check_internal_links(root: Path) -> list[str]:
 
             raw_path = _target_path(raw)
             target = unquote(raw_path)
-            # URL resolution keeps an encoded slash source-relative, while a
-            # literal leading slash is site-absolute in rendered Markdown.
-            if not raw_path.startswith("/"):
-                target = target.lstrip("/")
+            # GitHub renders a literal leading slash from the repository root,
+            # but keeps a percent-encoded slash relative to the source file.
+            # Strip decoded leading separators only after choosing that base.
+            target_base = (
+                resolved_root if raw_path.startswith("/") else markdown.parent
+            )
+            target = target.lstrip("/")
             if not target:
                 continue
 
-            resolved = (markdown.parent / target).resolve()
+            resolved = (target_base / target).resolve()
             try:
                 resolved.relative_to(resolved_root)
             except ValueError:

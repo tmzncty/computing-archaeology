@@ -397,7 +397,7 @@ class InternalLinkCheckerTests(unittest.TestCase):
             ["README.md -> images/missing.png (missing)"],
         )
 
-    def test_literal_leading_slash_does_not_resolve_from_repository_root(
+    def test_literal_leading_slash_resolves_from_repository_root(
         self,
     ) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -410,13 +410,7 @@ class InternalLinkCheckerTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            self.assertEqual(
-                check_internal_links(root),
-                [
-                    f"{Path('docs') / 'source.md'} -> "
-                    "/README.md escapes repository"
-                ],
-            )
+            self.assertEqual(check_internal_links(root), [])
 
     def test_encoded_leading_slash_stays_source_relative(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
