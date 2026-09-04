@@ -57,12 +57,16 @@ def _unescape_markdown(value: str) -> str:
     return "".join(result)
 
 
-def normalize_target(raw: str) -> str:
+def _target_path(raw: str) -> str:
     target = raw.strip()
     if target.startswith("<") and target.endswith(">"):
         target = target[1:-1]
     target = _unescape_markdown(target)
-    return unquote(target.split("#", 1)[0].split("?", 1)[0])
+    return target.split("#", 1)[0].split("?", 1)[0]
+
+
+def normalize_target(raw: str) -> str:
+    return unquote(_target_path(raw))
 
 
 def _is_external_or_fragment(raw: str) -> bool:
@@ -569,7 +573,12 @@ def check_internal_links(root: Path) -> list[str]:
             if _is_external_or_fragment(raw):
                 continue
 
-            target = normalize_target(raw)
+            raw_path = _target_path(raw)
+            target = unquote(raw_path)
+            # URL resolution keeps an encoded slash source-relative, while a
+            # literal leading slash is site-absolute in rendered Markdown.
+            if not raw_path.startswith("/"):
+                target = target.lstrip("/")
             if not target:
                 continue
 
