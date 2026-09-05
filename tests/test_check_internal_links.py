@@ -445,6 +445,22 @@ class InternalLinkCheckerTests(unittest.TestCase):
             self.assertEqual(len(errors), 2)
             self.assertTrue(all("escapes repository" in error for error in errors))
 
+    def test_invalid_percent_encoded_paths_are_reported_deterministically(
+        self,
+    ) -> None:
+        markdown = (
+            "[invalid UTF-8](replacement-%FF.md)\n"
+            "[embedded NUL](embedded%00nul.md)\n"
+        )
+
+        self.assertEqual(
+            self.check_text(markdown, ("replacement-\ufffd.md",)),
+            [
+                "README.md -> replacement-%FF.md (invalid path)",
+                "README.md -> embedded%00nul.md (invalid path)",
+            ],
+        )
+
     def test_inline_code_and_escaped_inline_links_are_not_checked(self) -> None:
         markdown = """
 `[code](missing-code.md)`

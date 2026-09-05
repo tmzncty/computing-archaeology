@@ -65,8 +65,17 @@ def _target_path(raw: str) -> str:
     return target.split("#", 1)[0].split("?", 1)[0]
 
 
+def _decode_target_path(raw: str) -> str:
+    """Decode a repository path without replacement text or impossible NULs."""
+
+    target = unquote(raw, errors="strict")
+    if "\x00" in target:
+        raise ValueError("repository paths cannot contain NUL")
+    return target
+
+
 def normalize_target(raw: str) -> str:
-    return unquote(_target_path(raw))
+    return _decode_target_path(_target_path(raw))
 
 
 def _is_external_or_fragment(raw: str) -> bool:
@@ -574,7 +583,11 @@ def check_internal_links(root: Path) -> list[str]:
                 continue
 
             raw_path = _target_path(raw)
-            target = unquote(raw_path)
+            try:
+                target = _decode_target_path(raw_path)
+            except ValueError:
+                failures.append(f"{markdown.relative_to(root)} -> {raw} (invalid path)")
+                continue
             # GitHub renders a literal leading slash from the repository root,
             # but keeps a percent-encoded slash relative to the source file.
             # Strip decoded leading separators only after choosing that base.
