@@ -2,15 +2,18 @@ from __future__ import annotations
 
 import io
 import math
+import os
 import subprocess
+import sys
 import tempfile
 import time
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, call, patch
 
 from tools.run_experiments import (
     DiscoveryError,
+    _MAX_WAIT_SLICE_SECONDS,
     _cleanup_process_tree,
     _start_experiment,
     discover_experiments,
@@ -158,6 +161,134 @@ class ExperimentRunnerTests(unittest.TestCase):
             with self.subTest(value=value):
                 with self.assertRaisesRegex(ValueError, "positive finite"):
                     run_experiments(Path.cwd(), [], timeout_seconds=value)
+
+    def test_large_timeout_waits_in_slices_until_process_finishes(self) -> None:
+        root = Path.cwd()
+        script = root / "quick.py"
+        process = Mock(args=["quick.py"])
+        process.wait.side_effect = [
+            subprocess.TimeoutExpired(process.args, _MAX_WAIT_SLICE_SECONDS),
+            0,
+        ]
+
+        with (
+            patch("tools.run_experiments._start_experiment", return_value=process),
+            patch("tools.run_experiments._cleanup_process_tree") as cleanup,
+            patch(
+                "tools.run_experiments.time.monotonic",
+                side_effect=[100.0, 100.0 + _MAX_WAIT_SLICE_SECONDS],
+            ),
+        ):
+            failures = run_experiments(
+                root,
+                [script],
+                timeout_seconds=3 * _MAX_WAIT_SLICE_SECONDS,
+            )
+
+        self.assertEqual(failures, [])
+        self.assertEqual(
+            process.wait.call_args_list,
+            [
+                call(timeout=_MAX_WAIT_SLICE_SECONDS),
+                call(timeout=_MAX_WAIT_SLICE_SECONDS),
+            ],
+        )
+        cleanup.assert_called_once_with(process)
+
+    def test_cleanup_starts_only_after_the_configured_deadline(self) -> None:
+        root = Path.cwd()
+        script = root / "stalled.py"
+        process = Mock(args=["stalled.py"])
+        events: list[tuple[str, float | None]] = []
+
+        def wait(timeout: float) -> int:
+            events.append(("wait", timeout))
+            raise subprocess.TimeoutExpired(process.args, timeout)
+
+        def cleanup(_: object) -> None:
+            events.append(("cleanup", None))
+
+        process.wait.side_effect = wait
+        timeout_seconds = 2 * _MAX_WAIT_SLICE_SECONDS
+        with (
+            patch("tools.run_experiments._start_experiment", return_value=process),
+            patch("tools.run_experiments._cleanup_process_tree", side_effect=cleanup),
+            patch(
+                "tools.run_experiments.time.monotonic",
+                side_effect=[
+                    100.0,
+                    100.0 + _MAX_WAIT_SLICE_SECONDS,
+                    100.0 + timeout_seconds,
+                ],
+            ),
+        ):
+            failures = run_experiments(
+                root,
+                [script],
+                timeout_seconds=timeout_seconds,
+            )
+
+        self.assertEqual(failures, [(Path("stalled.py"), None)])
+        self.assertEqual(
+            events,
+            [
+                ("wait", _MAX_WAIT_SLICE_SECONDS),
+                ("wait", _MAX_WAIT_SLICE_SECONDS),
+                ("cleanup", None),
+            ],
+        )
+
+    def test_finished_process_is_not_timed_out_by_a_large_budget(self) -> None:
+        root = Path.cwd()
+        script = root / "quick.py"
+        process = Mock(args=["quick.py"])
+        process.wait.return_value = 0
+
+        with (
+            patch("tools.run_experiments._start_experiment", return_value=process),
+            patch("tools.run_experiments._cleanup_process_tree") as cleanup,
+            patch(
+                "tools.run_experiments.time.monotonic",
+                return_value=100.0,
+            ),
+        ):
+            failures = run_experiments(
+                root,
+                [script],
+                timeout_seconds=sys.float_info.max,
+            )
+
+        self.assertEqual(failures, [])
+        process.wait.assert_called_once_with(timeout=_MAX_WAIT_SLICE_SECONDS)
+        cleanup.assert_called_once_with(process)
+
+    @unittest.skipUnless(os.name == "nt", "Windows wait boundary")
+    def test_windows_wait_does_not_wrap_large_finite_timeout(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            quick = self.make_experiment(root, "quick", "pass\n")
+
+            failures = run_experiments(
+                root,
+                [quick],
+                timeout_seconds=(2**32) / 1000,
+            )
+
+            self.assertEqual(failures, [])
+
+    @unittest.skipUnless(os.name == "nt", "Windows wait boundary")
+    def test_windows_wait_does_not_overflow_huge_finite_timeout(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            quick = self.make_experiment(root, "quick", "pass\n")
+
+            failures = run_experiments(
+                root,
+                [quick],
+                timeout_seconds=1e308,
+            )
+
+            self.assertEqual(failures, [])
 
     def test_cli_reports_the_timeout_and_returns_failure(self) -> None:
         stalled = Path("experiments") / "stalled" / "stalled.py"

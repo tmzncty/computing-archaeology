@@ -9,10 +9,12 @@ import os
 import signal
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 
 DEFAULT_TIMEOUT_SECONDS = 15.0
+_MAX_WAIT_SLICE_SECONDS = 24 * 60 * 60
 
 
 if os.name == "nt":
@@ -197,6 +199,29 @@ def _cleanup_process_tree(
         raise cleanup_error
 
 
+def _wait_for_process(
+    process: subprocess.Popen[object],
+    timeout_seconds: float,
+) -> int:
+    """Wait to the configured deadline without overflowing platform waits."""
+    deadline = time.monotonic() + timeout_seconds
+    remaining = timeout_seconds
+    while True:
+        # Windows wait APIs accept a 32-bit millisecond count. Keeping every
+        # individual wait well inside that range prevents large finite budgets
+        # from wrapping or overflowing while preserving the full deadline.
+        wait_slice = min(remaining, _MAX_WAIT_SLICE_SECONDS)
+        try:
+            return process.wait(timeout=wait_slice)
+        except subprocess.TimeoutExpired:
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise subprocess.TimeoutExpired(
+                    process.args,
+                    timeout_seconds,
+                ) from None
+
+
 def run_experiments(
     root: Path,
     scripts: list[Path],
@@ -215,7 +240,7 @@ def run_experiments(
         process = _start_experiment(root, script)
         timed_out = False
         try:
-            returncode = process.wait(timeout=timeout_seconds)
+            returncode = _wait_for_process(process, timeout_seconds)
         except subprocess.TimeoutExpired:
             timed_out = True
             returncode = None
