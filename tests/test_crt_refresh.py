@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import runpy
 import unittest
+from math import nextafter
 from pathlib import Path
 
 
@@ -13,6 +14,42 @@ simulate = CRT_REFRESH["simulate"]
 
 
 class CrtRefreshTests(unittest.TestCase):
+    def test_decimal_duration_keeps_every_complete_tick(self) -> None:
+        for seconds, rate, expected_operations in (
+            (0.29, 100.0, 29),
+            (0.57, 100.0, 57),
+            (2.9, 10.0, 29),
+            (0.58, 50.0, 29),
+        ):
+            with self.subTest(seconds=seconds, rate=rate):
+                result = simulate(1, seconds, rate, rate, 0.0)
+                self.assertEqual(result.refresh_operations, expected_operations)
+
+    def test_partial_duration_is_floored_not_rounded(self) -> None:
+        for seconds, expected_operations in (
+            (nextafter(0.29, 0.0), 28),
+            (nextafter(0.29, 1.0), 29),
+            (0.285, 28),
+            (0.299, 29),
+            (0.009, 0),
+            (0.0, 0),
+        ):
+            with self.subTest(seconds=seconds):
+                result = simulate(1, seconds, 100.0, 100.0, 0.0)
+                self.assertEqual(result.refresh_operations, expected_operations)
+
+    def test_last_complete_tick_can_record_signal_loss(self) -> None:
+        # No scan: after 28 ticks the signal is 0.72, after 29 it is 0.71.
+        # Keep the threshold away from either floating-point boundary.
+        result = simulate(1, 0.29, 100.0, 0.0, 1.0, threshold=0.715)
+        self.assertEqual(result.refresh_operations, 0)
+        self.assertEqual(result.lost_cells, 1)
+
+    def test_partial_final_tick_does_not_apply_decay(self) -> None:
+        result = simulate(1, 0.009, 100.0, 0.0, 100.0)
+        self.assertEqual(result.refresh_operations, 0)
+        self.assertEqual(result.lost_cells, 0)
+
     def test_scan_capacity_is_accumulated_across_refresh_ticks(self) -> None:
         for seconds, scan_capacity, expected_operations in (
             (1.0, 10.0, 10),
