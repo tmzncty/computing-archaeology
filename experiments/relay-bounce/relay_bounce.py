@@ -9,13 +9,34 @@ simple qualification policies change the logical interpretation.
 from __future__ import annotations
 
 import argparse
+import math
 from dataclasses import dataclass
+from fractions import Fraction
 
 
 @dataclass(frozen=True)
 class Sample:
     time_ms: float
     state: int
+
+
+@dataclass(frozen=True)
+class DebounceEvent:
+    time_ms: Fraction
+    kind: str
+    raw_state: int
+    qualified_state: int
+    candidate_state: int | None
+    deadline_ms: Fraction | None
+
+
+@dataclass(frozen=True)
+class DebounceTrace:
+    events: tuple[DebounceEvent, ...]
+    raw_closures: int
+    qualified_closures: int
+    final_state: int
+    horizon_ms: Fraction
 
 
 DEFAULT_WAVEFORM = [
@@ -80,6 +101,144 @@ def first_stable_transition(
     return None
 
 
+def _exact_ms(value: float, label: str) -> Fraction:
+    """Interpret a finite int/float's decimal spelling without binary epsilon."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{label} must be a finite number")
+    if isinstance(value, float) and not math.isfinite(value):
+        raise ValueError(f"{label} must be a finite number")
+    return Fraction(str(value))
+
+
+def trace_debounce(samples: list[Sample], stable_ms: float) -> DebounceTrace:
+    """Trace a synthetic continuous qualifier, initially open (0).
+
+    Both states need the same stable interval. Times use Fraction(str(value)):
+    their decimal spellings, not binary-float approximations, define deadlines.
+    A deadline is processed before an input edge at the same time. The last
+    sample bounds observation; a pending later deadline is never accepted.
+
+    Event raw/qualified fields describe those states at the event. Candidate
+    fields identify the involved candidate: cancellation and qualification
+    events retain it before clearing it. A deadline event precedes the matching
+    qualified-change event, whose qualified_state is the new state.
+    """
+    interval = _exact_ms(stable_ms, "stable_ms")
+    if interval <= 0:
+        raise ValueError("stable_ms must be > 0")
+    try:
+        observations = tuple(samples)
+    except TypeError as exc:
+        raise ValueError("samples must be a nonempty sequence of Sample values") from exc
+    if not observations:
+        raise ValueError("samples must not be empty")
+
+    timeline: list[tuple[Fraction, int]] = []
+    for index, sample in enumerate(observations):
+        if not isinstance(sample, Sample):
+            raise ValueError(f"samples[{index}] must be a Sample")
+        time_ms = _exact_ms(sample.time_ms, f"samples[{index}].time_ms")
+        if time_ms < 0 or (timeline and time_ms <= timeline[-1][0]):
+            raise ValueError("sample times must be nonnegative and strictly increasing")
+        if isinstance(sample.state, bool) or not isinstance(sample.state, int) or sample.state not in (0, 1):
+            raise ValueError(f"samples[{index}].state must be integer 0 or 1")
+        timeline.append((time_ms, sample.state))
+
+    events: list[DebounceEvent] = []
+    raw_state = timeline[0][1]
+    qualified_state = 0
+    candidate_state: int | None = None
+    deadline_ms: Fraction | None = None
+    raw_closures = 0
+    qualified_closures = 0
+
+    def emit(time_ms: Fraction, kind: str) -> None:
+        events.append(DebounceEvent(
+            time_ms, kind, raw_state, qualified_state, candidate_state, deadline_ms,
+        ))
+
+    def start_candidate(time_ms: Fraction) -> None:
+        nonlocal candidate_state, deadline_ms
+        candidate_state = raw_state
+        deadline_ms = time_ms + interval
+        emit(time_ms, "candidate-start")
+
+    def qualify_due(time_ms: Fraction) -> None:
+        nonlocal candidate_state, deadline_ms, qualified_state, qualified_closures
+        if candidate_state is not None and deadline_ms is not None and deadline_ms <= time_ms:
+            emit(deadline_ms, "deadline")
+            qualified_state = candidate_state
+            if qualified_state == 1:
+                qualified_closures += 1
+            emit(deadline_ms, "qualified-change")
+            candidate_state = None
+            deadline_ms = None
+
+    emit(timeline[0][0], "initial")
+    if raw_state != qualified_state:
+        start_candidate(timeline[0][0])
+
+    for time_ms, state in timeline[1:]:
+        # The old raw state persists up to this observation, including a
+        # qualification deadline exactly equal to this input edge's time.
+        qualify_due(time_ms)
+        if state == raw_state:
+            continue
+        if raw_state == 0 and state == 1:
+            raw_closures += 1
+        raw_state = state
+        emit(time_ms, "raw-change")
+        if candidate_state is not None:
+            emit(time_ms, "candidate-cancel")
+            candidate_state = None
+            deadline_ms = None
+        if raw_state != qualified_state:
+            start_candidate(time_ms)
+
+    horizon_ms = timeline[-1][0]
+    emit(horizon_ms, "horizon")
+    return DebounceTrace(
+        tuple(events), raw_closures, qualified_closures, qualified_state, horizon_ms,
+    )
+
+
+def _format_ms(value: Fraction) -> str:
+    """Render our terminating decimal times exactly, with at least two places."""
+    denominator = value.denominator
+    twos = fives = 0
+    while denominator % 2 == 0:
+        denominator //= 2
+        twos += 1
+    while denominator % 5 == 0:
+        denominator //= 5
+        fives += 1
+    # Inputs are finite decimal spellings; addition preserves this property.
+    assert denominator == 1
+    places = max(2, twos, fives)
+    scale = 10 ** places
+    scaled = value.numerator * scale // value.denominator
+    whole, fraction = divmod(scaled, scale)
+    return f"{whole}.{fraction:0{places}d}"
+
+
+def print_trace(trace: DebounceTrace) -> None:
+    print()
+    print("Continuous qualified-state trace (initial output=0; deadline before input edge)")
+    print("time (ms)  event             raw  qualified  candidate  deadline (ms)")
+    for event in trace.events:
+        candidate = "-" if event.candidate_state is None else str(event.candidate_state)
+        deadline = "-" if event.deadline_ms is None else _format_ms(event.deadline_ms)
+        print(
+            f"{_format_ms(event.time_ms):>9}  {event.kind:<16}  {event.raw_state:>3}  "
+            f"{event.qualified_state:>9}  {candidate:>9}  {deadline:>13}"
+        )
+    print(f"raw rising edges: {trace.raw_closures}")
+    print(f"qualified rising edges: {trace.qualified_closures}")
+    print(f"final qualified state at {_format_ms(trace.horizon_ms)} ms: {trace.final_state}")
+    print("The three-way comparison above reports only the first accepted closure.")
+    print("This continuous qualifier is a synthetic policy, not a historical relay circuit.")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Show how a synthetic bouncing relay closure becomes logical events."
@@ -96,8 +255,15 @@ def main() -> None:
         default=2.0,
         help="required continuous stable interval for qualification",
     )
+    parser.add_argument(
+        "--trace",
+        action="store_true",
+        help="also trace continuous opening/closing qualification and event counts",
+    )
     args = parser.parse_args()
 
+    if not math.isfinite(args.sample_after) or not math.isfinite(args.stable_ms):
+        parser.error("--sample-after and --stable-ms must be finite")
     if args.sample_after < 0 or args.stable_ms <= 0:
         parser.error("--sample-after must be >= 0 and --stable-ms must be > 0")
 
@@ -132,6 +298,8 @@ def main() -> None:
     print()
     print("The waveform and timing thresholds are synthetic teaching values.")
     print("They are not measurements of a specific historical relay.")
+    if args.trace:
+        print_trace(trace_debounce(samples, args.stable_ms))
 
 
 if __name__ == "__main__":
