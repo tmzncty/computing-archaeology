@@ -42,12 +42,13 @@ def simulate(
     cursor = 0
     lost = set()
     refresh_ops = 0
-    steps = int(seconds * refreshes_per_second)
     # Treat the caller-visible decimal values as exact model parameters.  The
-    # cumulative target is then floored without binary-float boundary errors.
-    scan_capacity_per_tick = Fraction(str(scan_capacity_per_second)) / Fraction(
-        str(refreshes_per_second)
-    )
+    # duration and cumulative scan targets must both use this convention:
+    # float multiplication can turn 0.29 * 100 into 28.999999999999996.
+    tick_rate = Fraction(str(refreshes_per_second))
+    tick_count = Fraction(str(seconds)) * tick_rate
+    steps = tick_count.numerator // tick_count.denominator
+    scan_capacity_per_tick = Fraction(str(scan_capacity_per_second)) / tick_rate
 
     for step in range(steps):
         for index, cell in enumerate(memory):
