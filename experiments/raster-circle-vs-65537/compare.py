@@ -14,7 +14,7 @@ def polygon_metrics(n: int, radius: float = 1.0) -> tuple[float, float, float]:
     if n < 3:
         raise ValueError("n must be at least 3")
     side = 2.0 * radius * math.sin(math.pi / n)
-    sagitta = radius * (1.0 - math.cos(math.pi / n))
+    # 2*sin^2(x/2) is numerically stabler than 1-cos(x) for large n.\n    sagitta = 2.0 * radius * math.sin(math.pi / (2.0 * n)) ** 2
     half_pixel_radius = math.inf if sagitta == 0 else 0.5 * radius / sagitta
     return side, sagitta, half_pixel_radius
 
