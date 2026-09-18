@@ -59,6 +59,15 @@ Start in [`docs/interaction/`](docs/interaction/) and [`case-studies/`](case-stu
 
 Start in [`docs/architecture/`](docs/architecture/) and [`docs/standards/`](docs/standards/).
 
+### Representation, geometry, and rasterization
+
+- exact mathematical objects versus executable geometric procedures;
+- high-precision numerical validation versus formal proof;
+- vector/continuous source geometry versus finite pixel sampling;
+- preservation of source structure that a rendered image can erase.
+
+Start with [`case-studies/regular-65537-gon/`](case-studies/regular-65537-gon/) and [`experiments/raster-circle-vs-65537/`](experiments/raster-circle-vs-65537/).
+
 ## Manufacturing civilization
 
 ### Semiconductor manufacturing
@@ -140,7 +149,7 @@ Coverage includes wire bonding, flip-chip, multidie packaging, hybrid bonding, m
 
 ## Experiments
 
-The repository currently contains **125 runnable synthetic constraint experiments** across three CI suites.
+The repository currently contains **more than 125 runnable synthetic constraint experiments**; most are exercised across the existing CI suites.
 
 Do not treat experiment values as historical measurements unless a specific experiment explicitly says otherwise. Their purpose is to expose mechanism and tradeoff structure.
 
