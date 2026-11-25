@@ -59,6 +59,13 @@ Start in [`docs/interaction/`](docs/interaction/) and [`case-studies/`](case-stu
 
 Start in [`docs/architecture/`](docs/architecture/) and [`docs/standards/`](docs/standards/).
 
+### Software reuse and institutional infrastructure
+
+- Soviet GosFAP: federated catalogues, program distribution, compatibility, maintenance obligations and the economics of actual reuse;
+- first-pass case study; national adoption rates and causal attribution remain open.
+
+Start with [`case-studies/gosfap/why-a-software-fund-was-not-a-software-ecosystem.md`](case-studies/gosfap/why-a-software-fund-was-not-a-software-ecosystem.md).
+
 ### Representation, geometry, and rasterization
 
 - exact mathematical objects versus executable geometric procedures;
